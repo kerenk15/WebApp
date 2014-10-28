@@ -162,7 +162,7 @@ margin-right: 0;
 }
 
 li{
-    margin: 7%;
+    margin: 3%;
 }
 
 ul{
@@ -208,6 +208,47 @@ margin-right: 0;
     top:38px;
 }
 
+.settings{
+background: white;
+width: 30px;
+height: 30px;
+position: absolute;
+right: 2%;
+top:20px;
+}
+
+.reports-form{
+    width: 96%;
+    background: white;
+    position: absolute;
+    top:50px;
+    right: 2%;
+}
+
+input[type="url"] , input[type="text"]{
+    width: 35%;
+}
+
+legend{
+    float: left;
+    padding: 0 10% 0 2%;
+}
+
+fieldset {
+    border: 0;
+    margin: 2%;
+    padding: 1%;
+    background: #998E8E;
+}
+
+input[type="submit"]{
+    background: black;
+    float: right;
+    margin: 0% 2% 1%;
+    color: white;
+    padding: 3px 20px;
+    border: none;
+}
 /*
  * Remove text-shadow in selection highlight: h5bp.com/i
  * These selection rule sets have to be separate.
@@ -247,16 +288,6 @@ canvas,
 img,
 video {
     vertical-align: middle;
-}
-
-/*
- * Remove default fieldset styles.
- */
-
-fieldset {
-    border: 0;
-    margin: 0;
-    padding: 0;
 }
 
 /*
