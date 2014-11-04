@@ -17,7 +17,7 @@ select,
 textarea {
     color: #222;
 }
- 
+
 html {
     font-size: 1em;
     line-height: 1.4;
@@ -40,7 +40,7 @@ background: #000000;
 }
 
 .layout-wrap{
-  margin:0 auto; 
+  margin:0 auto;
   position: relative;
   max-width: 960px;
   min-width: 600px;
@@ -55,7 +55,7 @@ header a{
 
 header a img{
   position:absolute;
-  left:10px; 
+  left:10px;
 }
 
 .search-box{
@@ -78,7 +78,7 @@ body{
     height: 710px;
 }
 
-.notifications{
+#notifications{
     background: #D3C6C6;
     width: 100%;
     height: 25px;
@@ -130,7 +130,7 @@ margin-right: 0;
 }
 
 .menu-hint p {
-    width: 97.3%;
+    width: 97%;
     background: #D3C6C6;
     position: absolute;
     bottom: 0;
@@ -140,6 +140,13 @@ margin-right: 0;
     padding: 2% 0 0 3%;
 }
 
+.arrow{
+    position: absolute;
+    bottom: 10px;
+    left: 90%;
+    transition:transform 1s;
+}
+
 .action-list{
     display: none;
     background: white;
@@ -147,6 +154,7 @@ margin-right: 0;
     top:140px;
     width: 100%;
     z-index: 10;
+ /*    transition: transform .55s; */
 }
 
 .action-list li{
@@ -157,8 +165,13 @@ margin-right: 0;
     border-bottom: none;
 }
 
-.nav-section:hover .menu > .action-list{
+.nav-section:hover .action-list{
     display: block;
+  /*   transform:translateY(20px); */
+}
+
+.nav-section:hover .arrow{
+    transform:rotate(180deg);
 }
 
 li{
@@ -210,7 +223,6 @@ margin-right: 0;
 
 .settings{
 background: white;
-width: 30px;
 height: 30px;
 position: absolute;
 right: 2%;
@@ -226,7 +238,7 @@ top:20px;
 }
 
 input[type="url"] , input[type="text"]{
-    width: 35%;
+    width: 30%;
 }
 
 legend{
