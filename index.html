@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="css/main.css">
         <script src="js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
-    <body>
+    <body onhashchange="funcRef();">
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -106,19 +106,23 @@
                 </nav>
 
                 <div class="tabs">
-                    <ul>
-                        <li><a href="#quick-reports">Quick Reports</a>
+                    <ul class="tabs_list" >
+                        <li class="tab"><a href="#quick-reports">Quick Reports</a>
                         </li>
-                        <li><a href="#fmy-folders">My Folders</a>
+                        <li class="tab"><a href="#fmy-folders">My Folders</a>
                         </li>
-                        <li><a href="#my-team-folders">My Team Folders</a>
+                        <li class="tab"><a href="#my-team-folders">My Team Folders</a>
                         </li>
-                        <li><a href="#public-folders">Public Folders</a>
+                        <li class="tab"><a href="#public-folders">Public Folders</a>
                         </li>
                     </ul>
 
-                    <div id="quick-reports">
-                        <a href="#" class="settings"><img src="img/settings.png"></a>
+                    <div id="pre-fix-quick-reports">
+                        <div class="links">
+                            <a href="#" class="expand"><img src="img/expand.png"></a>
+                            <a href="#" class="settings"><img src="img/settings.png"></a>
+                        </div>
+
                         <form  class="reports-form" action="submit.php" onsubmit="" mathod="get" role="">
                             <fieldset>
                               <legend>Report 01</legend>
@@ -138,17 +142,59 @@
                               <label for="url">URL</label><input type="url" name="url" id ="url">
                             </fieldset>
 
-                            <input type = "submit" name = "save" value = "Save">
+                            <div class="buttons">
+                                <a href="">Cancel</a>
+                                <input type = "submit" name = "save" value = "Save">
+                            </div>
                         </form>
                     </div>
 
-                    <div id="fmy-folders">
+                    <div id="pre-fix-fmy-folders" class = "hidden">
+                        <div class="links">
+                        <a href="#" class="expand"><img src="img/expand.png"></a>
+                        </div>
+                        <iframe src="http://www.paulirish.com/" width="95%" height="100%" frameborder="0" marginwidth="30%">
+                        </iframe>
                     </div>
 
-                    <div id="my-team-folders">
+                    <div id="pre-fix-my-team-folders" class = "hidden">
+                        <div class="links">
+                            <a href="#" class="expand"><img src="img/expand.png"></a>
+                            <a href="#" class="settings"><img src="img/settings.png"></a>
+                        </div>
+
+                        <form  class="reports-form" action="submit.php" onsubmit="" mathod="get" role="">
+                            <fieldset>
+                              <legend>Report 01</legend>
+                              <label for="Name">Name</label> <input type ="text" name ="Name" id ="Name">
+                              <label for="url">URL</label><input type="url" name="url" id ="url">
+                            </fieldset>
+
+                            <fieldset>
+                              <legend>Report 02</legend>
+                              <label for="Name">Name</label> <input type ="text" name ="Name" id ="Name">
+                              <label for="url">URL</label><input type="url" name="url" id ="url">
+                            </fieldset>
+
+                            <fieldset>
+                              <legend>Report 03</legend>
+                              <label for="Name">Name</label> <input type ="text" name ="Name" id ="Name">
+                              <label for="url">URL</label><input type="url" name="url" id ="url">
+                            </fieldset>
+
+                            <div class="buttons">
+                                <a href="">Cancel</a>
+                                <input type = "submit" name = "save" value = "Save">
+                            </div>
+                        </form>
                     </div>
 
-                    <div id="public-folders">
+                    <div id="pre-fix-public-folders" class = "hidden">
+                        <div class="links">
+                        <a href="#" class="expand"><img src="img/expand.png"></a>
+                        </div>
+                        <iframe src="http://www.ynet.co.il/home/0,7340,L-8,00.html" width="95%" height="100%" frameborder="0" marginwidth="30%">
+                        </iframe>
                     </div>
 
                 </div>
