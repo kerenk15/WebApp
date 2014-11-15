@@ -107,39 +107,47 @@
 
                 <div class="tabs">
                     <ul class="tabs_list" >
-                        <li class="tab"><a href="#quick-reports">Quick Reports</a>
+                        <li class="tab" id="active" tabindex="1" role="tab" aria-controls="panel_1"
+                        aria-owns="panel_1" aria-selected="true">
+                        <a href="#quick-reports">Quick Reports</a>
                         </li>
-                        <li class="tab"><a href="#fmy-folders">My Folders</a>
+                        <li class="tab" tabindex="2" role="tab" aria-controls="panel_2"
+                        aria-owns="panel_2" aria-selected="false">
+                        <a href="#fmy-folders">My Folders</a>
                         </li>
-                        <li class="tab"><a href="#my-team-folders">My Team Folders</a>
+                        <li class="tab" tabindex="3" role="tab" aria-controls="panel_3"
+                        aria-owns="panel_3" aria-selected="false">
+                        <a href="#my-team-folders">My Team Folders</a>
                         </li>
-                        <li class="tab"><a href="#public-folders">Public Folders</a>
+                        <li class="tab" tabindex="4" role="tab" aria-controls="panel_4"
+                        aria-owns="panel_4" aria-selected="false">
+                        <a href="#public-folders">Public Folders</a>
                         </li>
                     </ul>
 
                     <div id="pre-fix-quick-reports">
                         <div class="links">
                             <a href="#" class="expand"><img src="img/expand.png"></a>
-                            <a href="#" class="settings"><img src="img/settings.png"></a>
+                            <a href="#" class="settings" ><img src="img/settings.png"></a>
                         </div>
 
                         <form  class="reports-form" action="submit.php" onsubmit="" mathod="get" role="">
                             <fieldset>
                               <legend>Report 01</legend>
-                              <label for="Name">Name</label> <input type ="text" name ="Name" id ="Name">
-                              <label for="url">URL</label><input type="url" name="url" id ="url">
+                              <label for="Name1">Name</label> <input type ="text" name ="Name" id ="Name1">
+                              <label for="url1">URL</label><input type="url" name="url" id ="url1">
                             </fieldset>
 
                             <fieldset>
                               <legend>Report 02</legend>
-                              <label for="Name">Name</label> <input type ="text" name ="Name" id ="Name">
-                              <label for="url">URL</label><input type="url" name="url" id ="url">
+                              <label for="Name2">Name</label> <input type ="text" name ="Name" id ="Name2">
+                              <label for="url2">URL</label><input type="url" name="url" id ="url2">
                             </fieldset>
 
                             <fieldset>
                               <legend>Report 03</legend>
-                              <label for="Name">Name</label> <input type ="text" name ="Name" id ="Name">
-                              <label for="url">URL</label><input type="url" name="url" id ="url">
+                              <label for="Name3">Name</label> <input type ="text" name ="Name" id ="Name3">
+                              <label for="url3">URL</label><input type="url" name="url" id ="url3">
                             </fieldset>
 
                             <div class="buttons">
@@ -153,8 +161,9 @@
                         <div class="links">
                         <a href="#" class="expand"><img src="img/expand.png"></a>
                         </div>
-                        <iframe src="http://www.paulirish.com/" width="95%" height="100%" frameborder="0" marginwidth="30%">
-                        </iframe>
+                        <!-- <iframe src="http://www.paulirish.com/" width="95%"
+                        height="100%" frameborder="0" marginwidth="30%">
+                        </iframe> -->
                     </div>
 
                     <div id="pre-fix-my-team-folders" class = "hidden">
@@ -166,20 +175,20 @@
                         <form  class="reports-form" action="submit.php" onsubmit="" mathod="get" role="">
                             <fieldset>
                               <legend>Report 01</legend>
-                              <label for="Name">Name</label> <input type ="text" name ="Name" id ="Name">
-                              <label for="url">URL</label><input type="url" name="url" id ="url">
+                              <label for="Name4">Name</label> <input type ="text" name ="Name4" id ="Name">
+                              <label for="url4">URL</label><input type="url" name="url" id ="url4">
                             </fieldset>
 
                             <fieldset>
                               <legend>Report 02</legend>
-                              <label for="Name">Name</label> <input type ="text" name ="Name" id ="Name">
-                              <label for="url">URL</label><input type="url" name="url" id ="url">
+                              <label for="Name5">Name</label> <input type ="text" name ="Name" id ="Name5">
+                              <label for="url5">URL</label><input type="url" name="url" id ="url5">
                             </fieldset>
 
                             <fieldset>
                               <legend>Report 03</legend>
-                              <label for="Name">Name</label> <input type ="text" name ="Name" id ="Name">
-                              <label for="url">URL</label><input type="url" name="url" id ="url">
+                              <label for="Name6">Name</label> <input type ="text" name ="Name" id ="Name6">
+                              <label for="url6">URL</label><input type="url" name="url" id ="url6">
                             </fieldset>
 
                             <div class="buttons">
@@ -193,8 +202,9 @@
                         <div class="links">
                         <a href="#" class="expand"><img src="img/expand.png"></a>
                         </div>
-                        <iframe src="http://www.ynet.co.il/home/0,7340,L-8,00.html" width="95%" height="100%" frameborder="0" marginwidth="30%">
-                        </iframe>
+                       <iframe  id = 'ynet' src="http://www.ynet.co.il/home/0,7340,L-8,00.html"
+                              width="95%" height="100%" frameborder="0" marginwidth="30%">
+                       </iframe>
                     </div>
 
                 </div>

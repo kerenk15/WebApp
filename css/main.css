@@ -193,7 +193,7 @@ ul{
 
 .tabs ul li{
       background: #4D4753;
-      width: 23.2%;
+      width: 23.14%;
       height: 30px;
       margin: 1.2%;
       text-align: center;
@@ -281,6 +281,18 @@ iframe{
     text-decoration: underline;
 }
 
+.tab:focus , .tab:hover{
+    border: 1px solid blue;
+    background: #413B47;
+}
+
+#active {
+background: #D3C6C6;
+}
+
+#active a{
+color: black;
+}
 /*
  * Remove text-shadow in selection highlight: h5bp.com/i
  * These selection rule sets have to be separate.
