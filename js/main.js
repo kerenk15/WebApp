@@ -1,3 +1,4 @@
+//loading notifications//
 window.onload = (function() {
 
 	UTILS.ajax('../js/notification.txt', {
@@ -15,33 +16,10 @@ window.onload = (function() {
 						}
 					}
 			});
-
-
-var settings = document.querySelectorAll('.settings');
-console.log(settings);
-
-for (var i = 0; i < settings.length; i++) {
-	settings[i].addEventListener('click',checkClass);
-}
-
-var checkClass =  function(e){
-	console.log('setting clicked');
-	console.log(settings[i].className);
-	/* = className + hidden;e.preventDefault();*/
-
-
-
-
-
-
-
-
-};
-
-
 })();
 
 
+//tabs//
 var funcRef = function(){
 var hash = location.hash.slice(1),
 	tabs = document.querySelectorAll('.tabs > div'),
@@ -50,6 +28,7 @@ var hash = location.hash.slice(1),
 
 if (hash === '') {
 	hash = link.href.split('#')[1];
+	console.log(hash);
 }
 
 for (var i = 0; i < tabs.length; i++) {
@@ -62,15 +41,23 @@ for (var i = 0; i < tabs.length; i++) {
 document.querySelector('#pre-fix-' + hash).className = '';
 };
 
-/*var tabs_list = document.querySelectorAll('.tabs > ul > li > a');
+
+//accessibility with keyboard//
+var tabs_list = document.querySelector('.tabs_list');
 console.log(tabs_list);
-tabs_list.addEventListener('keyup', function(){
+
+tabs_list.addEventListener('keydown', function(e){
 console.log(e.keyCode);
+var target = e.target;
+
+if (target.tagName.toUpperCase() === 'LI'){
 	if (e.keyCode === 13 || e.keyCode === 32){
 		e.preventDefault();
+		console.log(target.tagName);
 		funcRef();
 	}
-});*/
+}
+});
 
 /*
 for (var i = 0; i < tabs.length; i++) {
@@ -80,9 +67,58 @@ for (var i = 0; i < tabs.length; i++) {
 UTILS.className(document.querySelector('#' + hash) , '');
 };*/
 
+//icon functionality//
+var links = document.querySelectorAll(".links");
+console.log(links);
+
+for (var i = 0; i < links.length; i++) {
+	links[i].addEventListener('click',checkIcon);
+}
+
+function checkIcon(e){
+	var targetTab = e.currentTarget.parentNode, //tab node
+		targetLink = e.target.parentNode;//'A' node when clicking img
+		/*console.log(targetLink.className , targetTab,tabID, form);*/
+
+	if (targetLink.className === 'settings'){ //if clicked settings
+		settings(targetTab);
+	}
+
+	if (targetLink.className === 'expand'){
+		console.log('expand');
+	}
 
 
-var expand = document.querySelectorAll('.expand');
+
+}
+
+function settings(targetTab){
+	var z = false,// form not hidden
+		addClass = [],// form class array
+		form = document.querySelector('.reports-form'),//call form under spesific tab
+		tabID = targetTab.id; // tab ID
+
+	addClass = form.className.split(" "); // add to array class name
+	console.log(addClass[0]);
+	for (var j = 0; j < addClass.length; j++) {
+		if (addClass[j] === 'hidden'){
+			z = true; // if class name hidden
+			addClass.pop().toString();// delete hidden and turn to string
+		}
+	}
+	if (z === false) //if no hidden
+		form.className = (form.className + ' ' + 'hidden');
+
+	else{
+		form.className = (addClass);
+	}
+		console.log(form.className);
+}
+
+
+
+
+/*var expand = document.querySelectorAll('.expand');
 console.log(expand);
 for (var j= 0; j < expand.length; j++) {
 	expand[j].addEventListener('click',openURL);
@@ -98,4 +134,4 @@ target = ('_blank');
 
 url = iframe.src;
 
-};
+};*/
