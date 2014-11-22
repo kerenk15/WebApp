@@ -237,6 +237,15 @@ top:20px;
     position: absolute;
     top:50px;
     right: 2%;
+    z-index:20;
+}
+
+select{
+    z-index: 20;
+    position: absolute;
+    top:20px;
+    left: 2%;
+    width: 20%;
 }
 
 input[type="url"] , input[type="text"]{

@@ -2,43 +2,43 @@
 window.onload = (function() {
 
 	UTILS.ajax('../js/notification.txt', {
-				method:'GET',
-				done: function(response){
-						console.log(response);
-						var i , p = '<p>' + response + '</p>';
-						console.log(p.length);
+		method:'GET',
+		done: function(response){
+				console.log(response);
+				var i , p = '<p>' + response + '</p>';
+				console.log(p.length);
 
-						if(response.length <= 1){
-							document.querySelector('#notifications').style.display = 'none';
-							}
-						else{
-							document.querySelector('#notifications').innerHTML = p;
-						}
+				if(response.length <= 1){
+					document.querySelector('#notifications').style.display = 'none';
 					}
-			});
+				else{
+					document.querySelector('#notifications').innerHTML = p;
+				}
+		}
+	});
 })();
 
 
 //tabs//
 var funcRef = function(){
-var hash = location.hash.slice(1),
-	tabs = document.querySelectorAll('.tabs > div'),
-	link = document.querySelector('.tabs > ul > li > a'),
-	Activelink = document.querySelectorAll('.tabs > ul > li > a');
+	var hash = location.hash.slice(1),
+		tabs = document.querySelectorAll('.tabs > div'),
+		link = document.querySelector('.tabs > ul > li > a'),
+		Activelink = document.querySelectorAll('.tabs > ul > li > a');
 
-if (hash === '') {
-	hash = link.href.split('#')[1];
-	console.log(hash);
-}
+	if (hash === '') {
+		hash = link.href.split('#')[1];
+		console.log(hash);
+	}
 
-for (var i = 0; i < tabs.length; i++) {
-	tabs[i].className = 'hidden';
-	Activelink[i].parentNode.id = '';
-	if (Activelink[i].href.split('#')[1] === hash)
-		Activelink[i].parentNode.id = 'active';
-}
+	for (var i = 0; i < tabs.length; i++) {
+		tabs[i].className = 'hidden';
+		Activelink[i].parentNode.id = '';
+		if (Activelink[i].href.split('#')[1] === hash)
+			Activelink[i].parentNode.id = 'active';
+	}
 
-document.querySelector('#pre-fix-' + hash).className = '';
+	document.querySelector('#pre-fix-' + hash).className = '';
 };
 
 
@@ -69,51 +69,127 @@ UTILS.className(document.querySelector('#' + hash) , '');
 
 //icon functionality//
 var links = document.querySelectorAll(".links");
-console.log(links);
 
 for (var i = 0; i < links.length; i++) {
 	links[i].addEventListener('click',checkIcon);
 }
 
 function checkIcon(e){
-	var targetTab = e.currentTarget.parentNode, //tab node
-		targetLink = e.target.parentNode;//'A' node when clicking img
-		/*console.log(targetLink.className , targetTab,tabID, form);*/
+	var targetTab = e.currentTarget.parentNode, //tab node / form
+		targetLink = e.target;// img / cancel link
+		console.log( targetTab ,targetLink.className);
 
-	if (targetLink.className === 'settings'){ //if clicked settings
+	if (targetLink.parentNode.className === 'settings'){ //if clicked settings in 'a' node
 		settings(targetTab);
 	}
 
-	if (targetLink.className === 'expand'){
+	if (targetLink.parentNode.className === 'expand'){
 		console.log('expand');
 	}
 
-
+	if (targetLink.className === 'cancel'){
+		settings(targetTab.parentNode); //tab node
+	}
 
 }
 
+//seeting icon
 function settings(targetTab){
-	var z = false,// form not hidden
-		addClass = [],// form class array
-		form = document.querySelector('.reports-form'),//call form under spesific tab
-		tabID = targetTab.id; // tab ID
+	var classNameArr = [],// form class array
+		tabID = targetTab.id, // tab ID
+		form = document.querySelector( '#pre-fix-quick-reports > form');//call form under spesific tab
 
-	addClass = form.className.split(" "); // add to array class name
-	console.log(addClass[0]);
-	for (var j = 0; j < addClass.length; j++) {
-		if (addClass[j] === 'hidden'){
-			z = true; // if class name hidden
-			addClass.pop().toString();// delete hidden and turn to string
-		}
-	}
-	if (z === false) //if no hidden
-		form.className = (form.className + ' ' + 'hidden');
+	classNameArr = form.className.split(" "); // add to array class name
 
+	if (hideForm(classNameArr)) //if hidden
+		form.className = (classNameArr);
 	else{
-		form.className = (addClass);
+		form.className = (form.className + ' ' + 'hidden');
 	}
 		console.log(form.className);
 }
+
+
+//hide form
+function hideForm(classNameArr){
+	for (var j = 0; j < classNameArr.length; j++) {
+		if (classNameArr[j] === 'hidden'){
+			classNameArr.pop().toString();// delete hidden and turn to string
+			return true; // if class name hidden
+		}
+	}
+	return false;
+}
+
+//cancel button
+var cancel = document.querySelectorAll(".buttons");
+console.log(cancel);
+for (var i = 0; i < cancel.length; i++) {
+	cancel[i].addEventListener('click',checkIcon);
+}
+
+//form validation ------------- understand how to make validation only when start writing
+
+/*function test(e){
+	var target = e.target;
+	console.log( target);
+    if (target.nodeName == 'INPUT') {
+    	console.log('INPUT');*/
+
+ /*   var x = document.forms["myForm"]["fname"].value;
+    if (x == null || x == "") {
+    form.email.focus();
+        return false;
+          if (form.email.value == "") */
+//   }
+// }
+
+/*function validateForm(){
+    var input = document.querySelector("input");
+	console.log(input);
+	input.addEventListener('input',test);
+}*/
+
+
+// open iframe only after validation
+// gatElementById(variable?)
+// add several reports - close old iframe + ceate only one select field + add option
+var link = document.querySelectorAll("fieldset input");
+console.log(link);
+for (var i = 0; i < link.length; i++) {
+	link[i].addEventListener('change',newIframe);
+}
+
+function newIframe(e){
+	var target = e.target,
+		tabID = e.currentTarget.parentNode;
+	console.log(target.name , target.value , tabID.parentNode);
+
+	if (target.name == 'url'){
+		var iframe = document.createElement('iframe');
+
+		iframe.frameBorder=0;
+		iframe.width="95%";
+		iframe.height="100%";
+		iframe.marginwidth="30%";
+		iframe.setAttribute("src", target.value);
+		document.getElementById("pre-fix-quick-reports").appendChild(iframe);
+
+		tabID.parentNode.className = (tabID.parentNode.className + ' ' + 'hidden');
+
+	    var sel = document.createElement('select');
+			sel.id = 'reportsList';
+			document.getElementById('pre-fix-quick-reports').appendChild(sel);
+
+	    var opt = document.createElement('option');
+	    	opt.index = 1;
+		    opt.value = target.value;
+		    opt.innerHTML = target.value;
+		    document.getElementById('reportsList').appendChild(opt);
+	}
+
+}
+
 
 
 
