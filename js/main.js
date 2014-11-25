@@ -21,28 +21,34 @@ window.onload = (function() {
 
 //tabs//
 var funcRef = function(){
-	var hash = location.hash.slice(1),
-		tabs = document.querySelectorAll('.tabs > div'),
-		link = document.querySelector('.tabs > ul > li > a'),
-		Activelink = document.querySelectorAll('.tabs > ul > li > a');
+	var hash = location.hash.slice(1), // returns the string we have after the # in the tab link, not including the #
+		tabs = document.querySelectorAll('.tabs > div'), //returns an array of the tab content
+		link = document.querySelector('.tabs > ul > li > a'); // returns the first tab link
 
+		//if there is no #, open the first tab
 	if (hash === '') {
 		hash = link.href.split('#')[1];
 		console.log(hash);
 	}
 
 	for (var i = 0; i < tabs.length; i++) {
-		tabs[i].className = 'hidden';
-		Activelink[i].parentNode.id = '';
-		if (Activelink[i].href.split('#')[1] === hash)
-			Activelink[i].parentNode.id = 'active';
+		tabs[i].className = 'hidden'; // hides all the tab content
+		activeTab(hash,i);
 	}
 
-	document.querySelector('#pre-fix-' + hash).className = '';
+	document.querySelector('#pre-fix-' + hash).className = '';// change the className of the relevent tab content
 };
 
+//active tab
+var activeTab = function(hash,i){
+	var Activelink = document.querySelectorAll('.tabs > ul > li > a'); // returns an array of all the tab links
 
-//accessibility with keyboard//
+	Activelink[i].parentNode.id = ''; // put no id at all tab links
+	if (Activelink[i].href.split('#')[1] === hash) // if link = to the current #
+		Activelink[i].parentNode.id = 'active'; // become active link
+};
+
+//accessibility with keyboard
 var tabs_list = document.querySelector('.tabs_list');
 console.log(tabs_list);
 
@@ -76,9 +82,10 @@ for (var i = 0; i < links.length; i++) {
 
 function checkIcon(e){
 	var targetTab = e.currentTarget.parentNode, //tab node / form
-		targetLink = e.target;// img / cancel link
-		console.log( targetTab ,targetLink.className);
+		targetLink = e.target;// img / cancel link / save button
+		console.log( targetTab ,targetLink.className, targetLink);
 
+	e.preventDefault();
 	if (targetLink.parentNode.className === 'settings'){ //if clicked settings in 'a' node
 		settings(targetTab);
 	}
@@ -91,13 +98,19 @@ function checkIcon(e){
 		settings(targetTab.parentNode); //tab node
 	}
 
+	if (targetLink.className === 'save'){
+		validation();
+	}
+
 }
 
 //seeting icon
 function settings(targetTab){
 	var classNameArr = [],// form class array
-		tabID = targetTab.id, // tab ID
-		form = document.querySelector( '#pre-fix-quick-reports > form');//call form under spesific tab
+		tabID = '#' + targetTab.id, // tab ID
+		hash = location.hash.slice(1),
+		Activelink = document.querySelectorAll('.tabs > ul > li > a'), // returns an array of all the tab links
+		form = document.querySelector(tabID + '> form');//call form under spesific tab
 
 	classNameArr = form.className.split(" "); // add to array class name
 
@@ -121,78 +134,59 @@ function hideForm(classNameArr){
 	return false;
 }
 
-//cancel button
-var cancel = document.querySelectorAll(".buttons");
-console.log(cancel);
-for (var i = 0; i < cancel.length; i++) {
-	cancel[i].addEventListener('click',checkIcon);
+//cancel / save button
+var buttons = document.querySelectorAll(".buttons");
+console.log(buttons);
+for (var i = 0; i < buttons.length; i++) {
+	buttons[i].addEventListener('click',checkIcon);
 }
 
-//form validation ------------- understand how to make validation only when start writing
-
-/*function test(e){
-	var target = e.target;
-	console.log( target);
-    if (target.nodeName == 'INPUT') {
-    	console.log('INPUT');*/
-
- /*   var x = document.forms["myForm"]["fname"].value;
-    if (x == null || x == "") {
-    form.email.focus();
-        return false;
-          if (form.email.value == "") */
-//   }
-// }
-
-/*function validateForm(){
-    var input = document.querySelector("input");
-	console.log(input);
-	input.addEventListener('input',test);
-}*/
-
-
-// open iframe only after validation
-// gatElementById(variable?)
-// add several reports - close old iframe + ceate only one select field + add option
-var link = document.querySelectorAll("fieldset input");
-console.log(link);
-for (var i = 0; i < link.length; i++) {
-	link[i].addEventListener('change',newIframe);
+//form validation
+//add focus on the first invalid input
+function validation(e){
+	var names = document.querySelectorAll('input[name="Name"]'),
+		url =  document.querySelectorAll('input[name="url"]');
+	for (var i = 0; i < names.length; i++) {
+		if ((names[i].value !== "") && (url[i].value === ""))
+			url[i].style.border = '1px solid red';
+		if ((names[i].value === "") && (url[i].value !== ""))
+			names[i].style.border = '1px solid red';
+		if ((names[i].value !== "") && (url[i].value !== "")){
+			names[i].style.border = 'none';
+			url[i].style.border = 'none';
+			newIframe(url[i],names[i]);
+		}
+	}
 }
 
-function newIframe(e){
-	var target = e.target,
-		tabID = e.currentTarget.parentNode;
-	console.log(target.name , target.value , tabID.parentNode);
-
-	if (target.name == 'url'){
-		var iframe = document.createElement('iframe');
+// open last iframe
+// gatElementById(variable?) -- not working
+// add several reports - close old iframe + create only one select field + add option
+function newIframe(url,urlName){
+	var formID = url.parentNode.parentNode,
+		tabID = '#' + formID.parentNode.id,
+		iframe = document.createElement('iframe');
 
 		iframe.frameBorder=0;
 		iframe.width="95%";
 		iframe.height="100%";
 		iframe.marginwidth="30%";
-		iframe.setAttribute("src", target.value);
+		iframe.setAttribute("src", url.value);
 		document.getElementById("pre-fix-quick-reports").appendChild(iframe);
 
-		tabID.parentNode.className = (tabID.parentNode.className + ' ' + 'hidden');
+		formID.className = (formID.className + ' ' + 'hidden');
 
+	    //check if select field exists
 	    var sel = document.createElement('select');
 			sel.id = 'reportsList';
-			document.getElementById('pre-fix-quick-reports').appendChild(sel);
+			document.getElementById("pre-fix-quick-reports").appendChild(sel);
 
 	    var opt = document.createElement('option');
 	    	opt.index = 1;
-		    opt.value = target.value;
-		    opt.innerHTML = target.value;
+		    opt.value = urlName.value;
+		    opt.innerHTML = urlName.value;
 		    document.getElementById('reportsList').appendChild(opt);
-	}
-
 }
-
-
-
-
 
 /*var expand = document.querySelectorAll('.expand');
 console.log(expand);
