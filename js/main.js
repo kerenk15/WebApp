@@ -145,7 +145,9 @@ for (var i = 0; i < buttons.length; i++) {
 //add focus on the first invalid input
 function validation(e){
 	var names = document.querySelectorAll('input[name="Name"]'),
-		url =  document.querySelectorAll('input[name="url"]');
+		url =  document.querySelectorAll('input[name="url"]'),
+		index = 0;
+
 	for (var i = 0; i < names.length; i++) {
 		if ((names[i].value !== "") && (url[i].value === ""))
 			url[i].style.border = '1px solid red';
@@ -154,15 +156,18 @@ function validation(e){
 		if ((names[i].value !== "") && (url[i].value !== "")){
 			names[i].style.border = 'none';
 			url[i].style.border = 'none';
-			newIframe(url[i],names[i]);
+			addToSelect(names[i] , index);
+			index ++;
 		}
 	}
+
+	if (index > 0) // open iframe only to the last index
+		newIframe(url[index-1]);
 }
 
-// open last iframe
 // gatElementById(variable?) -- not working
-// add several reports - close old iframe + create only one select field + add option
-function newIframe(url,urlName){
+// add several reports - close old iframe + add only new option + remove options+ conecctions between option and url
+function newIframe(url){
 	var formID = url.parentNode.parentNode,
 		tabID = '#' + formID.parentNode.id,
 		iframe = document.createElement('iframe');
@@ -175,17 +180,24 @@ function newIframe(url,urlName){
 		document.getElementById("pre-fix-quick-reports").appendChild(iframe);
 
 		formID.className = (formID.className + ' ' + 'hidden');
+}
 
-	    //check if select field exists
-	    var sel = document.createElement('select');
+function addToSelect(urlName , index){
+    var sel = document.getElementById("reportsList"),
+    	opt;
+
+	    if (sel === null){ // create select field only once
+		    sel = document.createElement('select');
 			sel.id = 'reportsList';
 			document.getElementById("pre-fix-quick-reports").appendChild(sel);
+		}
 
-	    var opt = document.createElement('option');
-	    	opt.index = 1;
-		    opt.value = urlName.value;
-		    opt.innerHTML = urlName.value;
-		    document.getElementById('reportsList').appendChild(opt);
+    	opt = document.createElement('option');
+	    opt.value = urlName.value;
+	    opt.innerHTML = urlName.value;
+	    /*opt.selectedIndex = true;*/
+	    /*opt.index = index-1;*/
+	    sel.add(opt,sel[0]);
 }
 
 /*var expand = document.querySelectorAll('.expand');
