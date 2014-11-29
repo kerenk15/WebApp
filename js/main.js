@@ -91,7 +91,7 @@ function checkIcon(e){
 	}
 
 	if (targetLink.parentNode.className === 'expand'){
-		console.log('expand');
+		expand();
 	}
 
 	if (targetLink.className === 'cancel'){
@@ -122,6 +122,10 @@ function settings(targetTab){
 		console.log(form.className);
 }
 
+//expand icon
+function expand(){
+	window.open(iframe.src,'_blank');
+}
 
 //hide form
 function hideForm(classNameArr){
@@ -144,9 +148,7 @@ for (var i = 0; i < buttons.length; i++) {
 //form validation
 //add focus on the first invalid input
 function validation(e){
-	var names = document.querySelectorAll('input[name="Name"]'),
-		url =  document.querySelectorAll('input[name="url"]'),
-		index = 0;
+	var	index = 0; // to know the last url entered
 
 	for (var i = 0; i < names.length; i++) {
 		if ((names[i].value !== "") && (url[i].value === ""))
@@ -156,64 +158,82 @@ function validation(e){
 		if ((names[i].value !== "") && (url[i].value !== "")){
 			names[i].style.border = 'none';
 			url[i].style.border = 'none';
-			addToSelect(names[i] , index);
+			addToSelect(names[i]);
 			index ++;
 		}
+	/*	if ((names[i].value === "") && (url[i].value === "")){ // remove option
+			removeFromSelect(names[i]);
+			index --;
+		}*/
 	}
 
 	if (index > 0) // open iframe only to the last index
 		newIframe(url[index-1]);
 }
 
-// gatElementById(variable?) -- not working
-// add several reports - close old iframe + add only new option + remove options+ conecctions between option and url
+//Global veriables
+var iframe,
+	names = document.querySelectorAll('input[name="Name"]'),
+	url =  document.querySelectorAll('input[name="url"]');
+
+// gatElementById(variable?) + add only new option + remove options+ move with keyboard
+
 function newIframe(url){
 	var formID = url.parentNode.parentNode,
-		tabID = '#' + formID.parentNode.id,
+			tabID = formID.parentNode.id;
+/*			console.log(tabID);
+			console.log(document.getElementById('#'+tabID));*/
+	if (iframe === undefined){
 		iframe = document.createElement('iframe');
-
 		iframe.frameBorder=0;
 		iframe.width="95%";
 		iframe.height="100%";
 		iframe.marginwidth="30%";
-		iframe.setAttribute("src", url.value);
 		document.getElementById("pre-fix-quick-reports").appendChild(iframe);
+	}
 
+	iframe.setAttribute("src", url.value);
+
+	if (hideForm(formID.className.split(" "))) //if hidden
+		formID.className = (formID.className);
+	else{
 		formID.className = (formID.className + ' ' + 'hidden');
+	}
+
 }
 
-function addToSelect(urlName , index){
-    var sel = document.getElementById("reportsList"),
-    	opt;
+function addToSelect(urlName){
+	var sel = document.getElementById("reportsList"),
+	    opt;
 
-	    if (sel === null){ // create select field only once
-		    sel = document.createElement('select');
-			sel.id = 'reportsList';
-			document.getElementById("pre-fix-quick-reports").appendChild(sel);
-		}
+    if (sel === null){ // create select field only once
+	    sel = document.createElement('select');
+		sel.id = 'reportsList';
+		document.getElementById("pre-fix-quick-reports").appendChild(sel);
+		sel.addEventListener('change', changeOption);
+	}
 
-    	opt = document.createElement('option');
-	    opt.value = urlName.value;
-	    opt.innerHTML = urlName.value;
-	    /*opt.selectedIndex = true;*/
-	    /*opt.index = index-1;*/
-	    sel.add(opt,sel[0]);
+	opt = document.createElement('option');
+    opt.value = urlName.value;
+    opt.innerHTML = urlName.value;
+    opt.selected = true;
+    sel.add(opt,sel[0]);
 }
 
-/*var expand = document.querySelectorAll('.expand');
-console.log(expand);
-for (var j= 0; j < expand.length; j++) {
-	expand[j].addEventListener('click',openURL);
+var changeOption = function(e){
+	var target = e.target,
+		selectedOption = target[target.selectedIndex];
+
+	for (var i = 0; i < names.length; i++) {
+		if (names[i].value === selectedOption.value)
+			newIframe(url[i]);
+	}
+};
+
+/*function removeFromSelect(urlName){
+	sel.remove(opt,sel);
 }
+*/
 
-var openURL = function (e){
-	console.log(expand[j]);
-var target = e.target,
-	url = terget.href,
-	iframe = window.frames['#ynet'];
-e.preventDefault();
-target = ('_blank');
 
-url = iframe.src;
 
-};*/
