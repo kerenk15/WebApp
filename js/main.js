@@ -6,7 +6,6 @@ window.onload = (function() {
 		done: function(response){
 				console.log(response);
 				var i , p = '<p>' + response + '</p>';
-				console.log(p.length);
 
 				if(response.length <= 1){
 					document.querySelector('#notifications').style.display = 'none';
@@ -148,7 +147,8 @@ for (var i = 0; i < buttons.length; i++) {
 //form validation
 //add focus on the first invalid input
 function validation(e){
-	var	index = 0; // to know the last url entered
+	var	index = 0, // to know the last url entered
+		re =/http(s)?:\/\/w{0,3}.+\.\w{2,4}(.+)?/;
 
 	for (var i = 0; i < names.length; i++) {
 		if ((names[i].value !== "") && (url[i].value === ""))
@@ -157,9 +157,15 @@ function validation(e){
 			names[i].style.border = '1px solid red';
 		if ((names[i].value !== "") && (url[i].value !== "")){
 			names[i].style.border = 'none';
-			url[i].style.border = 'none';
-			addToSelect(names[i]);
-			index ++;
+			if (url[i].value.substring(0, 4) !== 'http') // http protocol
+					url[i].value = 'http://' + url[i].value;
+			if (re.test(url[i].value)){ // url validation
+    			url[i].style.border = 'none';
+				addToSelect(names[i]);
+				index ++;
+			}else{
+  				url[i].style.border = '1px solid red';
+  			}
 		}
 	/*	if ((names[i].value === "") && (url[i].value === "")){ // remove option
 			removeFromSelect(names[i]);
@@ -231,6 +237,8 @@ var changeOption = function(e){
 };
 
 /*function removeFromSelect(urlName){
+	var sel = document.getElementById("reportsList"),
+	    opt;
 	sel.remove(opt,sel);
 }
 */
