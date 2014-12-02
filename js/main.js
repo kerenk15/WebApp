@@ -161,7 +161,7 @@ function validation(e){
 					url[i].value = 'http://' + url[i].value;
 			if (re.test(url[i].value)){ // url validation
     			url[i].style.border = 'none';
-				addToSelect(names[i]);
+				addToSelect(names[i] , index);
 				index ++;
 			}else{
   				url[i].style.border = '1px solid red';
@@ -182,20 +182,20 @@ var iframe,
 	names = document.querySelectorAll('input[name="Name"]'),
 	url =  document.querySelectorAll('input[name="url"]');
 
-// gatElementById(variable?) + add only new option + remove options+ move with keyboard
+// gatElementById(variable?) + remove options+ move with keyboard
 
 function newIframe(url){
 	var formID = url.parentNode.parentNode,
 			tabID = formID.parentNode.id;
 /*			console.log(tabID);
-			console.log(document.getElementById('#'+tabID));*/
+			console.log(console.log(document.querySelector('#'+ tabID)););*/
 	if (iframe === undefined){
 		iframe = document.createElement('iframe');
 		iframe.frameBorder=0;
 		iframe.width="95%";
 		iframe.height="100%";
 		iframe.marginwidth="30%";
-		document.getElementById("pre-fix-quick-reports").appendChild(iframe);
+		document.querySelector('#'+ tabID).appendChild(iframe); // tabID as global veriable
 	}
 
 	iframe.setAttribute("src", url.value);
@@ -208,7 +208,7 @@ function newIframe(url){
 
 }
 
-function addToSelect(urlName){
+function addToSelect(urlName , index){
 	var sel = document.getElementById("reportsList"),
 	    opt;
 
@@ -217,6 +217,14 @@ function addToSelect(urlName){
 		sel.id = 'reportsList';
 		document.getElementById("pre-fix-quick-reports").appendChild(sel);
 		sel.addEventListener('change', changeOption);
+	}
+
+// check that its not the first time we prass save +
+// // if it's the first value in the select we remove all options
+
+	if ((opt !== null) && (index === 0)){
+		for (opt in sel)
+			sel.remove(opt);
 	}
 
 	opt = document.createElement('option');
