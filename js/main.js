@@ -182,7 +182,7 @@ var iframe,
 	names = document.querySelectorAll('input[name="Name"]'),
 	url =  document.querySelectorAll('input[name="url"]');
 
-// gatElementById(variable?) + remove options+ move with keyboard
+// gatElementById(variable?) + remove options+ move with keyboard + search + local storage
 
 function newIframe(url){
 	var formID = url.parentNode.parentNode,
@@ -207,11 +207,10 @@ function newIframe(url){
 	}
 
 }
-
-function addToSelect(urlName , index){
-	var sel = document.getElementById("reportsList"),
+var sel = document.getElementById("reportsList"),
 	    opt;
 
+function addToSelect(urlName , index){
     if (sel === null){ // create select field only once
 	    sel = document.createElement('select');
 		sel.id = 'reportsList';
@@ -251,5 +250,25 @@ var changeOption = function(e){
 }
 */
 
+var search = document.querySelector(".search-box");
+search.addEventListener('submit',searchBox);
+
+function searchBox(e){
+	e.preventDefault();
+	var target = e.target.childNodes;
+
+	for (var i = 0; i < target.length; i++) {
+		if (target[i].nodeName === 'INPUT'){
+			for (var j = 0; j < names.length; j++) {
+				if (names[j].value === target[i].value){
+					console.log('find');
+					break;
+				}else
+					document.querySelector('#notifications > p').innerHTML =
+					('The searched report ' + target[i].value + ' was not found');
+			}
+		}
+	}
+}
 
 
