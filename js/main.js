@@ -9,10 +9,10 @@ window.onload = (function() {
 				var p = '<p>' + response + '</p>';
 
 				if(response.length <= 1){
-					document.querySelector('#notifications').style.display = 'none';
+					UTILS.qs('#notifications').style.display = 'none';
 					}
 				else{
-					document.querySelector('#notifications').innerHTML = p;
+					UTILS.qs('#notifications').innerHTML = p;
 				}
 		}
 	});
@@ -40,8 +40,9 @@ var funcRef,
 funcRef = function(){
 	'use strict';
 	var hash = location.hash.slice(1), // returns the string we have after the # in the tab link, not including the #
-		tabs = document.querySelectorAll('.tabs > div'), //returns an array of the tab content
-		link = document.querySelector('.tabs > ul > li > a'); // returns the first tab link
+		
+		tabs = UTILS.qsa('.tabs > div'), //returns an array of the tab content
+		link = UTILS.qs('.tabs > ul > li > a'); // returns the first tab link
 
 	//if there is no #, open the first tab
 	if (hash === '') {
@@ -56,13 +57,13 @@ funcRef = function(){
 	}
 
 	// change the className of the relevent tab content
-	document.querySelector('#pre-fix-' + hash).className = '';
+	UTILS.qs('#pre-fix-' + hash).className = '';
 };
 
 //active tab
 activeTab = function(hash,i){
 	'use strict';
-	var Activelink = document.querySelectorAll('.tabs > ul > li > a'); // returns an array of all the tab links
+	var Activelink = UTILS.qsa('.tabs > ul > li > a'); // returns an array of all the tab links
 
 	Activelink[i].parentNode.id = ''; // put no id at all tab links
 	if (Activelink[i].href.split('#')[1] === hash){ // if link = to the current #
@@ -71,9 +72,9 @@ activeTab = function(hash,i){
 };
 
 //accessibility with keyboard
-var tabs_list = document.querySelector('.tabs_list');
+var tabs_list = UTILS.qs('.tabs_list');
 
-tabs_list.addEventListener('keydown', function(e){
+UTILS.addEvent(tabs_list , 'keydown' , function(e){
 	'use strict';
 	console.log(e.keyCode);
 	var target = e.target;
@@ -88,10 +89,10 @@ tabs_list.addEventListener('keydown', function(e){
 });
 
 //icon functionality//
-links = document.querySelectorAll('.links');
+links = UTILS.qsa('.links');
 
 for (var i = 0; i < links.length; i++) {
-	links[i].addEventListener('click',checkIcon);
+	UTILS.addEvent(links[i] , 'click' , checkIcon);
 }
 
 function checkIcon(e){
@@ -124,7 +125,7 @@ settings = function (targetTab){
 	'use strict';
 	var classNameArr = [],// form class array
 		tabID = '#' + targetTab.id, // tab ID
-		form = document.querySelector(tabID + '> form');//call form under spesific tab
+		form = UTILS.qs(tabID + '> form');//call form under spesific tab
 
 	classNameArr = form.className.split(' '); //add to array class name
 
@@ -157,13 +158,13 @@ function hideForm(classNameArr){
 }
 
 //cancel / save button
-buttons = document.querySelectorAll('.buttons');
+buttons = UTILS.qsa('.buttons');
 for (var i = 0; i < buttons.length; i++) {
-	buttons[i].addEventListener('click',checkIcon);
+	UTILS.addEvent(buttons[i] , 'click' , checkIcon);
 }
 
-names = document.querySelectorAll('input[name="Name"]');
-url = document.querySelectorAll('input[name="url"]');
+names = UTILS.qsa('input[name="Name"]');
+url = UTILS.qsa('input[name="url"]');
 
 //form validation
 //add focus on the first invalid input
@@ -205,10 +206,9 @@ validation = function (targetTab){
 	if (index > -1){// open iframe only to the last index
 		newIframe(url[index] , targetTab.parentNode);
 	}
-
 };
 
-// expand 2 tabs + remove options+ move with keyboard + search + local storage
+//remove options+ move with keyboard + search + local storage
 
 var iframe;
 
@@ -225,7 +225,7 @@ newIframe = function (url , tab){
 		iframe.height='100%';
 		iframe.marginwidth='30%';
 		iframe.id = 'iframe-' + tab.id;
-		document.querySelector('#'+ tab.id).appendChild(iframe); // tabID as global veriable
+		UTILS.qs('#'+ tab.id).appendChild(iframe); // tabID as global veriable
 	}
 
 	iframe.setAttribute('src', url.value);
@@ -248,8 +248,8 @@ addToSelect = function (urlName , index , tab){
     if (sel === null){ // create select field only once
 	    sel = document.createElement('select');
 		sel.id = 'reportsList' + tab.id;
-		document.querySelector('#' + tab.id).appendChild(sel);
-		sel.addEventListener('change', changeOption);
+		UTILS.qs('#' + tab.id).appendChild(sel);
+		UTILS.addEvent(sel , 'change' , changeOption);
 	}
 
 // check that its not the first time we prass save +
@@ -287,9 +287,9 @@ changeOption = function(e){
 }
 */
 
-var search = document.querySelector('.search-box');
+var search = UTILS.qs('.search-box');
 console.log(search);
-search.addEventListener('submit',searchBox);
+UTILS.addEvent(search , 'submit' , searchBox);
 
 function searchBox(e){
 	'use strict';
@@ -304,7 +304,7 @@ function searchBox(e){
 					return;
 				}
 			}
-		document.querySelector('#notifications > p').innerHTML =
+		UTILS.qs('#notifications > p').innerHTML =
 		('The searched report ' + target[i].value + ' was not found');
 		}
 	}
@@ -319,9 +319,10 @@ var localStorageSupported = function () {
 		return true;
 	};
 
+
 var initReprots = function(){
     var savedData = localStorage.getItem('reports'),
-    	allForms = UTILS.qsa('form');
+    	allForms = UTILS.qsa('.reports-form');
 
     // If no localStorage, we can't retrieve any data
     if (!localStorageSupported()) {
@@ -394,7 +395,7 @@ var initReprots = function(){
 
 
 
-
+/*
 
 (function () {
 	var ReportsForm = UTILS.qs('.Reports-form'),

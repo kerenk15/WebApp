@@ -26,7 +26,7 @@
  */
 
 var UTILS = (function () {
-
+    'use strict';
     return {
         qs: function (selector) {
             return document.querySelector(selector);
