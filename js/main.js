@@ -34,13 +34,28 @@ var funcRef,
 	links,
 	names,
 	url,
-	buttons;
+	buttons,
+ 	sel,
+	opt,
+	iframe,
+	search,
+	tabs_list,
+	addToStorage;
+
+names = UTILS.qsa('input[name="Name"]');
+url = UTILS.qsa('input[name="url"]');
+links = UTILS.qsa('.links');
+buttons = UTILS.qsa('.buttons');
+search = UTILS.qs('.search-box');
+tabs_list = UTILS.qs('.tabs_list');
+
+//FUNCTIONS//
 
 //tabs//
 funcRef = function(){
 	'use strict';
 	var hash = location.hash.slice(1), // returns the string we have after the # in the tab link, not including the #
-		
+
 		tabs = UTILS.qsa('.tabs > div'), //returns an array of the tab content
 		link = UTILS.qs('.tabs > ul > li > a'); // returns the first tab link
 
@@ -71,30 +86,17 @@ activeTab = function(hash,i){
 	}
 };
 
-//accessibility with keyboard
-var tabs_list = UTILS.qs('.tabs_list');
-
-UTILS.addEvent(tabs_list , 'keydown' , function(e){
+//check if local storage is supported
+var localStorageSupported = function () {
 	'use strict';
-	console.log(e.keyCode);
-	var target = e.target;
-
-	if (target.tagName.toUpperCase() === 'LI'){
-		if (e.keyCode === 13 || e.keyCode === 32){
-			e.preventDefault();
-			console.log(target.tagName);
-			funcRef();
-		}
+	if (!Modernizr.localstorage) {
+		console.error('Your browser does not support localStorage');
+		return false;
 	}
-});
+	return true;
+};
 
 //icon functionality//
-links = UTILS.qsa('.links');
-
-for (var i = 0; i < links.length; i++) {
-	UTILS.addEvent(links[i] , 'click' , checkIcon);
-}
-
 function checkIcon(e){
 	'use strict';
 	var targetTab = e.currentTarget.parentNode, //tab node / form
@@ -157,15 +159,6 @@ function hideForm(classNameArr){
 	return false;
 }
 
-//cancel / save button
-buttons = UTILS.qsa('.buttons');
-for (var i = 0; i < buttons.length; i++) {
-	UTILS.addEvent(buttons[i] , 'click' , checkIcon);
-}
-
-names = UTILS.qsa('input[name="Name"]');
-url = UTILS.qsa('input[name="url"]');
-
 //form validation
 //add focus on the first invalid input
 validation = function (targetTab){
@@ -174,7 +167,7 @@ validation = function (targetTab){
 		re =/http(s)?:\/\/w{0,3}.+\.\w{2,4}(.+)?/;
 
 	for (var i = 0; i < names.length; i++) {
-		//only if the name is in the cuurent tab
+		//only if the name is in the current tab
 		if(names[i].parentNode.parentNode.parentNode.id === targetTab.parentNode.id){
 			if ((names[i].value !== '') && (url[i].value === '')){
 			url[i].style.border = '1px solid red';
@@ -191,6 +184,7 @@ validation = function (targetTab){
 	    			url[i].style.border = 'none';
 					addToSelect(names[i] , index , targetTab.parentNode);
 					index = i;
+					addToStorage(names[i] , url[i] , targetTab.parentNode);
 				}else{
 	  				url[i].style.border = '1px solid red';
 	  			}
@@ -202,16 +196,12 @@ validation = function (targetTab){
 		}
 	}
 
-
 	if (index > -1){// open iframe only to the last index
 		newIframe(url[index] , targetTab.parentNode);
 	}
 };
 
-//remove options+ move with keyboard + search + local storage
-
-var iframe;
-
+//open new iframe
 newIframe = function (url , tab){
 	'use strict';
 	var formID = url.parentNode.parentNode;
@@ -238,11 +228,10 @@ newIframe = function (url , tab){
 	}
 };
 
-var sel,
-	opt;
-
+//adding new options to the select + to the local storage
 addToSelect = function (urlName , index , tab){
 	'use strict';
+
 	sel = document.getElementById('reportsList' + tab.id);
 
     if (sel === null){ // create select field only once
@@ -268,6 +257,60 @@ addToSelect = function (urlName , index , tab){
     sel.add(opt,sel[0]);
 };
 
+var local,
+	storageReports = [],
+	storageFolders = [];
+
+addToStorage = function(urlName , url , tab){
+	'use strict';
+
+	if (localStorageSupported()){
+
+		//adding form parameters to the relevant local storage
+		local = {
+	    	name: urlName.value,
+	    	url: url.value
+	    	};
+
+    	if (tab.id ==='pre-fix-quick-reports'){
+    		//how to add only the new reports???
+
+	    	//Add new local to the beggining of the array
+	    	storageReports.unshift(local);
+	    	// Put the array into storage
+			localStorage.setItem('storageReports', JSON.stringify(storageReports));
+    	}
+   		 if (tab.id ==='pre-fix-my-team-folders'){
+    		//Add new local to the beggining of the array
+    		storageFolders.unshift(local);
+    		// Put the array into storage
+			localStorage.setItem('storageFolders', JSON.stringify(storageFolders));
+   		}
+	}
+};
+
+
+//searcing in the site
+searchBox = function (e){
+	'use strict';
+	e.preventDefault();
+	var target = e.target.childNodes;
+
+	for (var i = 0; i < target.length; i++) {
+		if (target[i].nodeName === 'INPUT'){
+			for (var j = 0; j < names.length; j++) {
+				if (names[j].value === target[i].value){
+					console.log('find');
+					return;
+				}
+			}
+		UTILS.qs('#notifications > p').innerHTML =
+		('The searched report ' + target[i].value + ' was not found');
+		}
+	}
+};
+
+//open relevent option if there has been a change in the select
 changeOption = function(e){
 	'use strict';
 	var target = e.target,
@@ -287,219 +330,66 @@ changeOption = function(e){
 }
 */
 
-var search = UTILS.qs('.search-box');
-console.log(search);
-UTILS.addEvent(search , 'submit' , searchBox);
-
-function searchBox(e){
+// Setup the Reports-form if there is data saved in localStorage
+var initReports = function (storage) {
 	'use strict';
-	e.preventDefault();
-	var target = e.target.childNodes;
+	var savedData;
 
-	for (var i = 0; i < target.length; i++) {
-		if (target[i].nodeName === 'INPUT'){
-			for (var j = 0; j < names.length; j++) {
-				if (names[j].value === target[i].value){
-					console.log('find');
-					return;
-				}
-			}
-		UTILS.qs('#notifications > p').innerHTML =
-		('The searched report ' + target[i].value + ' was not found');
-		}
+	// Check if we have previously saved any Reports-form
+	savedData = localStorage.getItem(storage);
+	console.log(savedData);
+
+	if (!savedData) {
+		return false;
 	}
-}
 
-/*
-var localStorageSupported = function () {
-		if (!Modernizr.localstorage) {
-			console.error('Your browser does not support localStorage');
-			return false;
-		}
-		return true;
-	};
-
-
-var initReprots = function(){
-    var savedData = localStorage.getItem('reports'),
-    	allForms = UTILS.qsa('.reports-form');
-
-    // If no localStorage, we can't retrieve any data
-    if (!localStorageSupported()) {
-    	return false;
-    }
-
-    try {
-    	savedData = JSON.parse(savedData);
-    	if(savedData){
-	    	reports = savedData;
-    	}
-
-    } catch (e) {
-    	console.error('The saved data was not in a valid JSON format');
-    	return false;
-    }
-
-
-    for (var i = 0; i < allForms.length; i++) {
-    	var inputs = allForms[i].getElementsByTagName('input');
-    	for (var j = 0; j < inputs.length; j++) {
-    		inputs[j].value = '';
-    	}
-    }
-
-    // For each saved report
-    for (var inx in savedData) {
-
-    	// Prevent iterating inherited properties
-    	if (savedData.hasOwnProperty(inx)) {
-
-    		var name = UTILS.qsa('[data-settings="' + inx + '"] fieldset [type="text"]'),
-    		    url = UTILS.qsa('[data-settings="' + inx + '"] fieldset [type="url"]');
-
-		    for(var i = 0; i < savedData[inx].length; i++){
-		    	if(name[i] && url[i]){
-		    		name[i].value = savedData[inx][i].name;
-		    		url[i].value = savedData[inx][i].url;
-		    	}
-		    }
-		    // Pass the saveInput function context
-			saveInput({target: UTILS.qs('[data-form="' + inx + '"]')});
-    	}
-    }
+	// Parse the data into an object (will throw on invalid JSON)
+	try {
+		savedData = JSON.parse(savedData);
+	} catch (e) {
+		console.error('The saved data was not in a valid JSON format');
+		return false;
+	}
 };
 
+//event listeners + init localStorage
+var init = (function(){
+	'use strict';
+//icon functionality//
+for (var i = 0; i < links.length; i++) {
+	UTILS.addEvent(links[i] , 'click' , checkIcon);
+}
+
+//cancel / save button
+for (i = 0; i < buttons.length; i++) {
+	UTILS.addEvent(buttons[i] , 'click' , checkIcon);
+}
+
+//search button
+UTILS.addEvent(search , 'submit' , searchBox);
+
+initReports(storageFolders);
+initReports(storageReports);
+
+})();
 
 
+//accessibility with keyboard
 
+UTILS.addEvent(tabs_list , 'keydown' , function(e){
+	'use strict';
+	console.log(e.keyCode);
+	var target = e.target;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-(function () {
-	var ReportsForm = UTILS.qs('.Reports-form'),
-		initRereportsForms,
-		reportsFormHandler,
-		ReportsFormKey = 'ReportsForm',
-		Reports-formVals = [],
-		localStorageSupported;
-
-
-
-	// Setup the Reports-form if there is data saved in localStorage
-	initReportsForms = function () {
-		var savedData,
-			Input,
-			InputClone,
-			newInput;
-
-
-
-		// Check if we have previously saved any Reports-form
-		savedData = localStorage.getItem(ReportsFormKey);
-
-		if (!savedData) {
-			return false;
+	if (target.tagName.toUpperCase() === 'LI'){
+		if (e.keyCode === 13 || e.keyCode === 32){
+			e.preventDefault();
+			console.log(target.tagName);
+			funcRef();
 		}
+	}
+});
 
-		// Parse the data into an object (will throw on invalid JSON)
-		try {
-			savedData = JSON.parse(savedData);
-		} catch (e) {
-			console.error('The saved data was not in a valid JSON format');
-			return false;
-		}
 
-		// Get the first todo item
-		Input = ReportsForm.querySelector('.Reports-form input');
-		console.log(input);
-		// Make a clone of the first empty <LI>
-		InputClone = Input.cloneNode(true);
-		// Remove any present Reports-form
-		Reports-form.innerHTML = '';
+//remove options+ move with keyboard + search + local storage
 
-		// For each saved todo, create a new todo item
-		for (var inx in savedData) {
-			// Prevent iterating inherited properties
-			if (savedData.hasOwnProperty(inx)) {
-				// Add/Update the Reports-form values object
-				Reports-formVals[inx] = savedData[inx];
-				// Prepare a new todo item
-				newInput = InputClone.cloneNode(true);
-				newInput.innerHTML = Reports-formVals[inx];
-				// Add it to the Reports-form list
-				Reports-form.appendChild(newInput);
-			}
-		}
-	};
-
-	// On each todo text change
-	reportsFormHandler = function (todo) {
-		// Get latest todo items
-		var lis = Reports-form.querySelectorAll('.Reports-form li');
-
-		// Get all todo values
-		[].forEach.call(lis, function (elm, inx, Reports-form) {
-			// Get the index of the each todo, among the whole list
-			var todoInx = [].indexOf.call(Reports-form, elm);
-			// Add/Update the Reports-form values object
-			Reports-formVals[todoInx] = elm.textContent;
-		});
-
-		if (localStorageSupported()) {
-			// Save it in localStorage, as a string
-			localStorage.setItem(Reports-formKey, JSON.stringify(Reports-formVals));
-		}
-
-	};
-
-	UTILS.addEvent(Reports-form, 'input keydown', function (e) {
-		var target = e.target,
-			type = e.type,
-			keyCode = e.keyCode,
-			newTodo;
-
-		if (target.nodeName.toUpperCase() === 'LI') {
-			// Handle keys
-			if (type.indexOf('keydown') > -1) {
-				// Handle Enter key
-				if (keyCode === 13 && !e.shiftKey) {
-					e.preventDefault();
-
-					newTodo = target.cloneNode(true);
-					newTodo.innerHTML = '';
-					Reports-form.appendChild(newTodo);
-					newTodo.focus();
-				}
-			}
-
-			if (type.indexOf('input') > -1) {
-				reportsFormHandler(target);
-			}
-		}
-	});
-
-	initReports-form();
-}());
-*/
