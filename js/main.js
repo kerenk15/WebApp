@@ -184,7 +184,7 @@ validation = function (targetTab){
 	    			url[i].style.border = 'none';
 					addToSelect(names[i] , index , targetTab.parentNode);
 					index = i;
-					addToStorage(names[i] , url[i] , targetTab.parentNode);
+					addToStorage(names[i] , url[i] , targetTab.parentNode , index);
 				}else{
 	  				url[i].style.border = '1px solid red';
 	  			}
@@ -261,8 +261,9 @@ var local,
 	storageReports = [],
 	storageFolders = [];
 
-addToStorage = function(urlName , url , tab){
+addToStorage = function(urlName , url , tab, index){
 	'use strict';
+	console.log(storageReports , storageFolders , index);
 
 	if (localStorageSupported()){
 
@@ -273,14 +274,18 @@ addToStorage = function(urlName , url , tab){
 	    	};
 
     	if (tab.id ==='pre-fix-quick-reports'){
-    		//how to add only the new reports???
-
+    		if (index === 0){
+    			storageReports = [];
+    		}
 	    	//Add new local to the beggining of the array
 	    	storageReports.unshift(local);
 	    	// Put the array into storage
 			localStorage.setItem('storageReports', JSON.stringify(storageReports));
     	}
    		 if (tab.id ==='pre-fix-my-team-folders'){
+   		 	if (index === 3){
+			    storageFolders = [];
+			}
     		//Add new local to the beggining of the array
     		storageFolders.unshift(local);
     		// Put the array into storage
