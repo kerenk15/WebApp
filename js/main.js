@@ -1,5 +1,5 @@
 //loading notifications//
-window.onload = (function() {
+/*window.onload = (function() {
 	'use strict';
 
 	UTILS.ajax('../js/notification.txt', {
@@ -16,7 +16,27 @@ window.onload = (function() {
 				}
 		}
 	});
-})();
+})();*/
+
+(function($){
+	'use strict';
+	var notif = $('#notifications');
+
+	$.ajax({
+	  type: 'GET',
+	  url: '../js/notification.txt'
+	}).done(function(response) {
+		console.log(response);
+		var p = '<p>' + response + '</p>';
+
+		if(response.length <= 1){
+			notif.style.display = 'none';
+		}else{
+			notif.html(p);
+		}
+	});
+})(jQuery);
+
 
 //Global veriables
 var funcRef,
@@ -24,7 +44,6 @@ var funcRef,
 	checkIcon,
 	settings,
 	expand,
-	hideForm,
 	validation,
 	newIframe,
 	addToSelect,
@@ -42,12 +61,12 @@ var funcRef,
 	tabs_list,
 	addToStorage;
 
-names = UTILS.qsa('input[name="Name"]');
-url = UTILS.qsa('input[name="url"]');
-links = UTILS.qsa('.links');
-buttons = UTILS.qsa('.buttons');
-search = UTILS.qs('.search-box');
-tabs_list = UTILS.qs('.tabs_list');
+names = $('input[name="Name"]');
+url = $('input[name="url"]');
+links = $('.links');
+buttons = $('.buttons');
+search = $('.search-box');
+tabs_list = $('.tabs_list').eq(0);
 
 //FUNCTIONS//
 
@@ -56,8 +75,8 @@ funcRef = function(){
 	'use strict';
 	var hash = location.hash.slice(1), // returns the string we have after the # in the tab link, not including the #
 
-		tabs = UTILS.qsa('.tabs > div'), //returns an array of the tab content
-		link = UTILS.qs('.tabs > ul > li > a'); // returns the first tab link
+		tabs = $('.tabs > div'), //returns an array of the tab content
+		link = $('.tabs > ul > li > a').eq(0); // returns the first tab link
 
 	//if there is no #, open the first tab
 	if (hash === '') {
@@ -66,25 +85,28 @@ funcRef = function(){
 	}
 
 	// hides all the tab content
-	for (var i = 0; i < tabs.length; i++) {
-		tabs[i].className = 'hidden';
-		activeTab(hash,i);
-	}
+	$.each( tabs, function( i, value ) {
+		value = $(value);
+	 	value.addClass('hidden');
+	 	activeTab(hash , i);
+	});
 
 	// change the className of the relevent tab content
-	UTILS.qs('#pre-fix-' + hash).className = '';
+	var tabName = $('#pre-fix-' + hash);
+	tabName.removeClass('hidden');
 };
 
 //active tab
-activeTab = function(hash,i){
+activeTab = function(hash , i){
 	'use strict';
-	var Activelink = UTILS.qsa('.tabs > ul > li > a'); // returns an array of all the tab links
+	var Activelink = $('.tabs > ul > li > a'); // returns an array of all the tab links
 
 	Activelink[i].parentNode.id = ''; // put no id at all tab links
 	if (Activelink[i].href.split('#')[1] === hash){ // if link = to the current #
 		Activelink[i].parentNode.id = 'active'; // become active link
 	}
 };
+
 
 //check if local storage is supported
 var localStorageSupported = function () {
@@ -125,19 +147,11 @@ function checkIcon(e){
 //setting icon
 settings = function (targetTab){
 	'use strict';
-	var classNameArr = [],// form class array
-		tabID = '#' + targetTab.id, // tab ID
-		form = UTILS.qs(tabID + '> form');//call form under spesific tab
+	var tabID = '#' + targetTab.id, // tab ID
+		form = $(tabID + '> form');//call form under spesific tab
 
-	classNameArr = form.className.split(' '); //add to array class name
-
-	if (hideForm(classNameArr)) {//if hidden
-		form.className = (classNameArr);
-	}
-	else{
-		form.className = (form.className + ' ' + 'hidden');
-	}
-		console.log(form.className);
+		$(form).toggleClass('hidden');
+		console.log(form);
 };
 
 //expand icon
@@ -146,18 +160,6 @@ expand = function (tab){
 	iframe = document.getElementById('iframe-' + tab.id);
 	window.open(iframe.src,'_blank');
 };
-
-//hide form
-function hideForm(classNameArr){
-	'use strict';
-	for (var j = 0; j < classNameArr.length; j++) {
-		if (classNameArr[j] === 'hidden'){
-			classNameArr.pop().toString();// delete hidden and turn to string
-			return true; // if class name hidden
-		}
-	}
-	return false;
-}
 
 //form validation
 //add focus on the first invalid input
@@ -215,17 +217,11 @@ newIframe = function (url , tab){
 		iframe.height='100%';
 		iframe.marginwidth='30%';
 		iframe.id = 'iframe-' + tab.id;
-		UTILS.qs('#'+ tab.id).appendChild(iframe); // tabID as global veriable
+		$('#'+ tab.id).append(iframe); // tabID as global veriable
 	}
 
 	iframe.setAttribute('src', url.value);
-
-	if (hideForm(formID.className.split(' '))){ //if hidden
-		formID.className = (formID.className);
-	}
-	else{
-		formID.className = (formID.className + ' ' + 'hidden');
-	}
+	$(formID).toggleClass('hidden'); //hides the previous iframe
 };
 
 //adding new options to the select + to the local storage
@@ -237,7 +233,7 @@ addToSelect = function (urlName , index , tab){
     if (sel === null){ // create select field only once
 	    sel = document.createElement('select');
 		sel.id = 'reportsList' + tab.id;
-		UTILS.qs('#' + tab.id).appendChild(sel);
+		$('#' + tab.id).append(sel);
 		UTILS.addEvent(sel , 'change' , changeOption);
 	}
 
