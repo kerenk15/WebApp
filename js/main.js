@@ -37,7 +37,6 @@
 	});
 })(jQuery);
 
-
 //Global veriables
 var funcRef,
 	activeTab,
@@ -107,7 +106,6 @@ activeTab = function(hash , i){
 	}
 };
 
-
 //check if local storage is supported
 var localStorageSupported = function () {
 	'use strict';
@@ -141,7 +139,6 @@ function checkIcon(e){
 	if (targetLink.className === 'save'){
 		validation(targetTab);
 	}
-
 }
 
 //setting icon
@@ -166,16 +163,20 @@ expand = function (tab){
 validation = function (targetTab){
 	'use strict';
 	var	index = -1, // to know the last url entered
-		re =/http(s)?:\/\/w{0,3}.+\.\w{2,4}(.+)?/;
+		re =/http(s)?:\/\/w{0,3}.+\.\w{2,4}(.+)?/,
+		coloredBorder = 0;
 
-	for (var i = 0; i < names.length; i++) {
+	$.each(names, function( i,value ) {
+
 		//only if the name is in the current tab
-		if(names[i].parentNode.parentNode.parentNode.id === targetTab.parentNode.id){
+		if(value.parentNode.parentNode.parentNode.id === targetTab.parentNode.id){
 			if ((names[i].value !== '') && (url[i].value === '')){
-			url[i].style.border = '1px solid red';
+				url[i].style.border = '1px solid red';
+				coloredBorder = 1;
 			}
 			if ((names[i].value === '') && (url[i].value !== '')){
 				names[i].style.border = '1px solid red';
+				coloredBorder = 1;
 			}
 			if ((names[i].value !== '') && (url[i].value !== '')){
 				names[i].style.border = 'none';
@@ -189,6 +190,7 @@ validation = function (targetTab){
 					addToStorage(names[i] , url[i] , targetTab.parentNode , index);
 				}else{
 	  				url[i].style.border = '1px solid red';
+	  				coloredBorder = 1;
 	  			}
 			}
 		/*	if ((names[i].value === '') && (url[i].value === '')){ // remove option
@@ -196,9 +198,9 @@ validation = function (targetTab){
 				index --;
 			}*/
 		}
-	}
+	});
 
-	if (index > -1){// open iframe only to the last index
+	if ((index > -1) && (coloredBorder === 0)){// open iframe only to the last index and all the valus are validate
 		newIframe(url[index] , targetTab.parentNode);
 	}
 };
@@ -207,6 +209,7 @@ validation = function (targetTab){
 newIframe = function (url , tab){
 	'use strict';
 	var formID = url.parentNode.parentNode;
+	console.log(formID.className);
 
 	iframe = document.getElementById('iframe-' + tab.id);
 
@@ -221,24 +224,24 @@ newIframe = function (url , tab){
 	}
 
 	iframe.setAttribute('src', url.value);
-	$(formID).toggleClass('hidden'); //hides the previous iframe
+	$(formID).addClass('hidden'); //hides the previous iframe
 };
 
 //adding new options to the select + to the local storage
 addToSelect = function (urlName , index , tab){
 	'use strict';
-
 	sel = document.getElementById('reportsList' + tab.id);
 
-    if (sel === null){ // create select field only once
+	// create select field only once
+    if (sel === null){
 	    sel = document.createElement('select');
 		sel.id = 'reportsList' + tab.id;
 		$('#' + tab.id).append(sel);
-		UTILS.addEvent(sel , 'change' , changeOption);
+		$(sel).change(changeOption);
 	}
 
-// check that its not the first time we prass save +
-// if it's the first value in the select we remove all options
+	// check that its not the first time we prass save +
+	// if it's the first value in the select we remove all options
 
 	if ((opt !== null) && (index === -1)){
 		for (opt in sel){
@@ -290,25 +293,24 @@ addToStorage = function(urlName , url , tab, index){
 	}
 };
 
-
 //searcing in the site
 searchBox = function (e){
 	'use strict';
 	e.preventDefault();
 	var target = e.target.childNodes;
 
-	for (var i = 0; i < target.length; i++) {
+	$.each(target, function(i){
 		if (target[i].nodeName === 'INPUT'){
-			for (var j = 0; j < names.length; j++) {
+			$.each(names, function(j){
 				if (names[j].value === target[i].value){
-					console.log('find');
+					expand(names[j].parentNode.parentNode.parentNode);// open the relevant found site in a new window
 					return;
 				}
-			}
+			});
 		UTILS.qs('#notifications > p').innerHTML =
 		('The searched report ' + target[i].value + ' was not found');
 		}
-	}
+	});
 };
 
 //open relevent option if there has been a change in the select
@@ -356,28 +358,27 @@ var initReports = function (storage) {
 //event listeners + init localStorage
 var init = (function(){
 	'use strict';
-//icon functionality//
-for (var i = 0; i < links.length; i++) {
-	UTILS.addEvent(links[i] , 'click' , checkIcon);
-}
+	//icon functionality//
+	$.each(links, function( i,value ) {
+		$(value).click(checkIcon);
+	});
 
-//cancel / save button
-for (i = 0; i < buttons.length; i++) {
-	UTILS.addEvent(buttons[i] , 'click' , checkIcon);
-}
+	//cancel / save button
+	$.each(buttons, function( i,value ) {
+		$(value).click(checkIcon);
+	});
 
-//search button
-UTILS.addEvent(search , 'submit' , searchBox);
+	//search button
+	$(search).submit(searchBox);
 
-initReports(storageFolders);
-initReports(storageReports);
+	initReports(storageFolders);
+	initReports(storageReports);
 
 })();
 
 
 //accessibility with keyboard
-
-UTILS.addEvent(tabs_list , 'keydown' , function(e){
+$(tabs_list).keydown(function(e){
 	'use strict';
 	console.log(e.keyCode);
 	var target = e.target;
@@ -392,5 +393,5 @@ UTILS.addEvent(tabs_list , 'keydown' , function(e){
 });
 
 
-//remove options+ move with keyboard + search + local storage
+//remove options+ move with keyboard + local storage
 
