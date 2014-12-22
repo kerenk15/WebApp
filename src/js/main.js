@@ -1,22 +1,4 @@
 //loading notifications//
-/*window.onload = (function() {
-	'use strict';
-
-	UTILS.ajax('../js/notification.txt', {
-		method:'GET',
-		done: function(response){
-				console.log(response);
-				var p = '<p>' + response + '</p>';
-
-				if(response.length <= 1){
-					UTILS.qs('#notifications').style.display = 'none';
-					}
-				else{
-					UTILS.qs('#notifications').innerHTML = p;
-				}
-		}
-	});
-})();*/
 
 (function($){
 	'use strict';
@@ -24,7 +6,7 @@
 
 	$.ajax({
 	  type: 'GET',
-	  url: '../js/notification.txt'
+	  url: '../../data/notification.txt'
 	}).done(function(response) {
 		console.log(response);
 		var p = '<p>' + response + '</p>';
@@ -307,7 +289,7 @@ searchBox = function (e){
 					return;
 				}
 			});
-		UTILS.qs('#notifications > p').innerHTML =
+		$('#notifications > p').innerHTML =
 		('The searched report ' + target[i].value + ' was not found');
 		}
 	});

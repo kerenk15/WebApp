@@ -1,0 +1,654 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"buli",
+				"bulid-css"
+			],
+			[
+				"test",
+				"testObject"
+			],
+			[
+				"if",
+				"iframe"
+			],
+			[
+				"par",
+				"parentNode"
+			],
+			[
+				"ta",
+				"target"
+			],
+			[
+				"targ",
+				"target"
+			],
+			[
+				"tar",
+				"targetTab"
+			],
+			[
+				"lo",
+				"log	Console Log (var)"
+			],
+			[
+				"tr",
+				"true"
+			],
+			[
+				"log",
+				"logm	Console Log (string)"
+			],
+			[
+				"fun",
+				"fun	Function"
+			],
+			[
+				"k",
+				"key"
+			],
+			[
+				"sel",
+				"sel"
+			],
+			[
+				"select",
+				"selectedIndex"
+			],
+			[
+				"add",
+				"add"
+			],
+			[
+				"in",
+				"index"
+			],
+			[
+				"se",
+				"select"
+			],
+			[
+				"op",
+				"option	Tag"
+			],
+			[
+				"p",
+				"parentNode"
+			],
+			[
+				"st",
+				"style"
+			],
+			[
+				"val",
+				"value"
+			],
+			[
+				"name",
+				"names"
+			],
+			[
+				"butt",
+				"buttons"
+			],
+			[
+				"va",
+				"validation"
+			],
+			[
+				"na",
+				"names"
+			],
+			[
+				"qu",
+				"querySelectorAll"
+			],
+			[
+				"ac",
+				"Activelink"
+			],
+			[
+				"def",
+				"preventDefault"
+			],
+			[
+				"cla",
+				"className"
+			],
+			[
+				"form",
+				"formID"
+			],
+			[
+				"ret",
+				"return"
+			],
+			[
+				"act",
+				"activeTab"
+			],
+			[
+				"ID",
+				"id"
+			],
+			[
+				"tab",
+				"tabID"
+			],
+			[
+				"n",
+				"name"
+			],
+			[
+				"i",
+				"iframe"
+			],
+			[
+				"for",
+				"for	for (…) {…}"
+			],
+			[
+				"l",
+				"log"
+			],
+			[
+				"pre",
+				"preventDefault"
+			],
+			[
+				"t",
+				"target"
+			],
+			[
+				"back",
+				"background"
+			],
+			[
+				"pad",
+				"padding"
+			],
+			[
+				"padd",
+				"padding"
+			],
+			[
+				"mar",
+				"margin"
+			],
+			[
+				"margi",
+				"margin"
+			],
+			[
+				"text",
+				"text-indent"
+			],
+			[
+				"backg",
+				"background-size"
+			],
+			[
+				"paddi",
+				"padding-right"
+			],
+			[
+				"ma",
+				"margin-top"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"fon",
+				"font-size"
+			],
+			[
+				"paddin",
+				"padding-left"
+			],
+			[
+				"bo",
+				"bottom"
+			],
+			[
+				"fo",
+				"font-size"
+			],
+			[
+				"ba",
+				"background"
+			],
+			[
+				"mr",
+				"margin"
+			],
+			[
+				"font-",
+				"font-size"
+			],
+			[
+				"vi",
+				"vertical-align"
+			],
+			[
+				"te",
+				"text-align"
+			],
+			[
+				"h",
+				"href	Attr"
+			],
+			[
+				"b",
+				"bottom"
+			],
+			[
+				"posi",
+				"position"
+			],
+			[
+				"pa",
+				"padding-left"
+			],
+			[
+				"bac",
+				"background"
+			],
+			[
+				"no",
+				"no-repeat"
+			],
+			[
+				"wid",
+				"width"
+			],
+			[
+				"fl",
+				"float"
+			],
+			[
+				"he",
+				"header	Tag"
+			],
+			[
+				"tex",
+				"text-align"
+			],
+			[
+				"text-",
+				"text-decoration"
+			],
+			[
+				"wi",
+				"width"
+			],
+			[
+				"inli",
+				"inline-block"
+			],
+			[
+				"list",
+				"list-style"
+			],
+			[
+				"pos",
+				"position"
+			],
+			[
+				"bore",
+				"border"
+			],
+			[
+				"inl",
+				"inline-block"
+			],
+			[
+				"di",
+				"display"
+			],
+			[
+				"w",
+				"width"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 127.0,
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 416.0
+	},
+	"console":
+	{
+		"height": 450.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+	],
+	"file_history":
+	[
+		"/C/Users/Shalom/Desktop/Netcraft/grunt/src/css/components/_buttons.scss",
+		"/C/Users/Shalom/Desktop/Netcraft/grunt/public/js/main.min.js",
+		"/C/Users/Shalom/Desktop/Netcraft/grunt/public/css/main.min.css.map",
+		"/C/Users/Shalom/Desktop/Netcraft/grunt/src/js/plugins.js",
+		"/C/Users/Shalom/Desktop/Netcraft/grunt/src/css/main.scss",
+		"/C/Users/Shalom/Desktop/Netcraft/grunt/main.js",
+		"/C/Users/Shalom/Desktop/Netcraft/grunt/.jshintrc",
+		"/C/Users/Shalom/Desktop/Netcraft/grunt/gruntfile.js",
+		"/C/Users/Shalom/Desktop/Netcraft/conEmu/gruntfile.js",
+		"/C/Users/Shalom/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/Shalom/Documents/GitHub/WebApp/index.html",
+		"/C/Users/Shalom/Documents/GitHub/WebApp/js/main.js",
+		"/C/Users/Shalom/Desktop/Netcraft/שיעורים/tmp לשכפול/js/main.js",
+		"/C/Users/Shalom/Desktop/Netcraft/שיעורים/Ajax/.jshintrc",
+		"/C/Users/Shalom/Documents/GitHub/.jshintrc",
+		"/C/Users/Shalom/AppData/Roaming/Sublime Text 3/Packages/JavaScript/function-(fun).sublime-snippet",
+		"/C/Users/Shalom/AppData/Roaming/Sublime Text 3/Packages/User/Snippets/JavaScript/console.log.sublime-snippet",
+		"/C/Users/Shalom/Desktop/Netcraft/שיעורים/tmp לשכפול/css/style.css",
+		"/C/Users/Shalom/Desktop/Netcraft/שיעורים/tmp לשכפול/index.html",
+		"/C/Users/Shalom/Desktop/Netcraft/שיעורים/tmp לשכפול/main.js",
+		"/C/Users/Shalom/Desktop/Netcraft/שיעורים/iframe.html",
+		"/C/Users/Shalom/Desktop/Netcraft/שיעורים/iframe/iframe.html",
+		"/C/Users/Shalom/Documents/GitHub/WebApp/js/plugins.js",
+		"/C/Users/Shalom/Documents/GitHub/Comverse/ContactUs.html",
+		"/C/Users/Shalom/Desktop/Netcraft/שיעורים/Ajax/api-ex.js",
+		"/C/Users/Shalom/Documents/GitHub/WebApp/css/main.css",
+		"/C/Users/Shalom/Desktop/Netcraft/שיעורים/Ajax/plugin.js",
+		"/C/Users/Shalom/Desktop/Netcraft/שיעורים/Ajax/plugin - Copy.js",
+		"/C/Users/Shalom/Desktop/Netcraft/שיעורים/Ajax/plugin - Copy (2).js",
+		"/C/Users/Shalom/Desktop/Netcraft/שיעורים/Ajax/plugin-example.js",
+		"/C/Users/Shalom/Desktop/Netcraft/שיעורים/Ajax/main.js",
+		"/C/Users/Shalom/Documents/GitHub/Comverse/index.html",
+		"/C/Users/Shalom/Documents/GitHub/Comverse/css/style.css",
+		"/C/Users/Shalom/Documents/GitHub/Comverse/css/styleGuide.css",
+		"/C/Users/Shalom/Desktop/Accessible forms. Lab 1.htm",
+		"/C/Users/Shalom/Desktop/DEMO.htm",
+		"/C/Users/Shalom/Desktop/Netcraft/Comverse ישן/StyleGuide.html",
+		"/C/Users/Shalom/Documents/GitHub/kerenk15.github.io/index.html",
+		"/C/Users/Shalom/Documents/GitHub/kerenk15.github.io/Comverse/StyleGuide.html",
+		"/C/Users/Shalom/Documents/GitHub/kerenk15.github.io/Comverse/css/styleGuide.css",
+		"/C/Users/Shalom/Documents/GitHub/kerenk15.github.io/Comverse/index.html",
+		"/C/Users/Shalom/Documents/GitHub/kerenk15.github.io/Comverse/css/style.css",
+		"/C/Users/Shalom/Documents/GitHub/kerenk15.github.io/DevShots/index.html",
+		"/C/Users/Shalom/Desktop/Netcraft/lecture-list/list of lectures.html",
+		"/C/Users/Shalom/Desktop/coldplay2.html",
+		"/C/Users/Shalom/Desktop/coldplay.html",
+		"/C/Users/Shalom/Desktop/Netcraft/Dev Shots.html",
+		"/C/Users/Shalom/Desktop/Netcraft/list of lectures.html",
+		"/C/Users/Shalom/Desktop/index.html",
+		"/C/Users/Shalom/Desktop/KEREN.HTML",
+		"/C/Users/Shalom/Desktop/Netcraft/index.html",
+		"/C/Users/Shalom/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap"
+	],
+	"find":
+	{
+		"height": 26.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"main",
+			"all",
+			"false",
+			"loca",
+			"searchBox",
+			"Reports-formVals",
+			"document",
+			"qs",
+			"queryselector",
+			"queryselectorall",
+			"addEventListener",
+			"//\n",
+			"addEventListener",
+			"addEventListe",
+			"validation",
+			"valida",
+			"test",
+			"links",
+			"list",
+			"sett",
+			"Activelink",
+			"changeOption",
+			"\"\"",
+			"var",
+			"TodoElm",
+			"todoElm",
+			"TodoElm",
+			"todoElm",
+			"TodoElm",
+			"todoElm",
+			"			todoElm,\n",
+			"todoHandler",
+			"reports-form",
+			"todos",
+			"Todos",
+			"todos",
+			"Todos",
+			"todos",
+			"item",
+			"todos",
+			"Todos",
+			"todos",
+			"Todos",
+			"todos",
+			"clear",
+			"clearBtn",
+			"function_name",
+			"true",
+			"validation",
+			"form",
+			"report",
+			"tabs",
+			"activ",
+			"tabID",
+			"style",
+			"check",
+			"icon",
+			"buttons",
+			"sett",
+			"reportsList",
+			"repor",
+			"ACTIV",
+			"form",
+			"settin",
+			"                       <",
+			"small_s",
+			"isOptions",
+			"done",
+			"error",
+			"footer_buttom_nav_s",
+			"footer_buttom_nav",
+			"footer_buttom_nav_small",
+			"searc",
+			"servic",
+			"succe",
+			"footer",
+			"transi",
+			"large",
+			"ul>li",
+			"media",
+			"links",
+			"colorb",
+			"wra",
+			"hover",
+			"colorbo",
+			"colo",
+			"displa",
+			".blue",
+			"top",
+			"link",
+			"colorb",
+			"slide-",
+			".top",
+			"links",
+			"top",
+			"new",
+			"auto",
+			"black",
+			"#4ea6ca",
+			";\n",
+			"h3",
+			"buttom",
+			"1000",
+			"h5",
+			"h4",
+			"h3",
+			"date",
+			"1000",
+			"h2",
+			"befor",
+			"<div class=\"center_page\">",
+			";\n",
+			"after",
+			"conten",
+			"date",
+			"left",
+			".\n",
+			"}\n",
+			"	\n",
+			";\n",
+			"ul",
+			"290px",
+			";\n"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "webapp.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": false,
+	"side_bar_width": 168.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

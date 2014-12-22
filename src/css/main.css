@@ -64,7 +64,7 @@ header a img{
 }
 
 body{
-    background:url(../img/body-background.jpg) no-repeat top center;
+    background:url(../../img/body-background.jpg) no-repeat top center;
     background-size: 100% 100%;
     font-size: 14px;
     width: 100%;
@@ -121,15 +121,15 @@ margin-right: 0;
 }
 
 .reports{
-     background:  url(../img/action-report-new.png) no-repeat 50% -180%;
+     background:  url(../../img/action-report-new.png) no-repeat 50% -180%;
 }
 
 .dashboard{
-     background:  url(../img/action-report-top.png) no-repeat 50% -180%;
+     background:  url(../../img/action-report-top.png) no-repeat 50% -180%;
 }
 
 .Tutorials{
-     background:  url(../img/actions-help.png) no-repeat 50% 210%;
+     background:  url(../../img/actions-help.png) no-repeat 50% 210%;
 }
 
 .menu-hint p {
