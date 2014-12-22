@@ -212,10 +212,10 @@ newIframe = function (url , tab){
 //adding new options to the select + to the local storage
 addToSelect = function (urlName , index , tab){
 	'use strict';
-	sel = document.getElementById('reportsList' + tab.id);
+	sel = $('#reportsList' + tab.id);
 
 	// create select field only once
-    if (sel === null){
+    if (!sel.length){
 	    sel = document.createElement('select');
 		sel.id = 'reportsList' + tab.id;
 		$('#' + tab.id).append(sel);
@@ -226,9 +226,9 @@ addToSelect = function (urlName , index , tab){
 	// if it's the first value in the select we remove all options
 
 	if ((opt !== null) && (index === -1)){
-		for (opt in sel){
-			sel.remove(opt);
-		}
+		$.each(function (key , value) {
+			sel.remove(key);
+		});
 	}
 
 	opt = document.createElement('option');
@@ -338,7 +338,7 @@ var initReports = function (storage) {
 };
 
 //event listeners + init localStorage
-var init = (function(){
+(function(){
 	'use strict';
 	//icon functionality//
 	$.each(links, function( i,value ) {

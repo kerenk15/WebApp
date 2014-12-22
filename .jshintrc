@@ -86,6 +86,7 @@
 
     // Custom Globals
      "globals"       : {         // additional predefined global variables
-        "UTILS" : true
+        "Modernizr" : true
+
     }
 }

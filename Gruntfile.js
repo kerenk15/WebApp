@@ -47,7 +47,7 @@ module.exports = function (grunt) {
 				sourceMap: true
 			},
 			target: {
-				src: '<%= dirs.src.js %>/**/*.js',
+				src: '<%= dirs.src.js %>/main.js',
 				dest: '<%= dirs.dest.js %>/main.min.js'
 			}
 		},
