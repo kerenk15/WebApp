@@ -11,12 +11,15 @@
 		console.log(response);
 		var p = '<p>' + response + '</p>';
 
-		if(response.length <= 1){
-			notif.style.display = 'none';
+		if(!response.length){
+			notif.hide();
 		}else{
 			notif.html(p);
 		}
-	});
+	}).fail(function() {
+    	 notif.hide();
+  	});
+
 })(jQuery);
 
 //Global veriables
@@ -212,22 +215,20 @@ newIframe = function (url , tab){
 //adding new options to the select + to the local storage
 addToSelect = function (urlName , index , tab){
 	'use strict';
-	sel = $('#reportsList' + tab.id);
+	sel = document.getElementById('reportsList' + tab.id);
 
-	// create select field only once
-    if (!sel.length){
+    // create select field only once
+    if (sel === null){
 	    sel = document.createElement('select');
 		sel.id = 'reportsList' + tab.id;
 		$('#' + tab.id).append(sel);
 		$(sel).change(changeOption);
-	}
-
-	// check that its not the first time we prass save +
-	// if it's the first value in the select we remove all options
-
-	if ((opt !== null) && (index === -1)){
-		$.each(function (key , value) {
-			sel.remove(key);
+}
+// check that its not the first time we prass save +
+// if it's the first value in the select we remove all options
+	if ((opt) && (index === -1)){
+		$.each(sel, function( index, value ) {
+  			sel.remove(opt);
 		});
 	}
 
@@ -236,9 +237,11 @@ addToSelect = function (urlName , index , tab){
     opt.innerHTML = urlName.value;
     opt.selected = true;
     sel.add(opt,sel[0]);
+
 };
 
 var local,
+	globalStorage,
 	storageReports = [],
 	storageFolders = [];
 
@@ -247,6 +250,8 @@ addToStorage = function(urlName , url , tab, index){
 	console.log(storageReports , storageFolders , index);
 
 	if (localStorageSupported()){
+		storageReports = [];
+		storageFolders = [];
 
 		//adding form parameters to the relevant local storage
 		local = {
@@ -255,24 +260,25 @@ addToStorage = function(urlName , url , tab, index){
 	    	};
 
     	if (tab.id ==='pre-fix-quick-reports'){
-    		if (index === 0){
-    			storageReports = [];
-    		}
 	    	//Add new local to the beggining of the array
 	    	storageReports.unshift(local);
-	    	// Put the array into storage
-			localStorage.setItem('storageReports', JSON.stringify(storageReports));
-    	}
-   		 if (tab.id ==='pre-fix-my-team-folders'){
-   		 	if (index === 3){
-			    storageFolders = [];
 			}
+
+		if (tab.id ==='pre-fix-my-team-folders'){
     		//Add new local to the beggining of the array
     		storageFolders.unshift(local);
-    		// Put the array into storage
-			localStorage.setItem('storageFolders', JSON.stringify(storageFolders));
-   		}
-	}
+    		}
+
+    	globalStorage = {
+    		Reports: storageReports,
+    		Folders: storageFolders
+    	};
+
+	    // Put the array into storage
+		localStorage.setItem('globalStorage', JSON.stringify(globalStorage));
+		/*console.log( localStorage.getItem( localStorage.globalStorage ) );*/
+
+   	}
 };
 
 //searcing in the site
