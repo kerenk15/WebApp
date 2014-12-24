@@ -1,0 +1,33 @@
+.reports-form{
+    width: $window_width;
+    background: $white;
+    position: absolute;
+    top:50px;
+    right: 2%;
+    z-index:20;
+}
+
+input[type="url"],
+input[type="text"]{
+    width: 30%;
+}
+
+legend{
+    float: left;
+    padding: 0 10% 0 2%;
+}
+
+fieldset {
+    border: 0;
+    margin: 2%;
+    padding: 1%;
+    background: $mediumGrey;
+}
+
+input[type="submit"]{
+    background: $black;
+    color: $white;
+    padding: 3px 20px;
+    border: none;
+    margin-left: 5px;
+}

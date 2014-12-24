@@ -9,6 +9,14 @@
 /* ==========================================================================
    Base styles: opinionated defaults
    ========================================================================== */
+$ligthGrey: #D3C6C6;
+$mediumGrey:#998E8E;
+$darkGrey:#4D4753;
+$darkGreyHover:#413B47;
+$black:#000000;
+$white: #ffffff;
+$window_width:96%;
+$full_width:100%;
 
 html,
 button,
@@ -26,36 +34,37 @@ html {
 }
 
 *, *:before, *:after {
-box-sizing: inherit;
+    box-sizing: inherit;
 }
 
 a {
     text-decoration: none;
-    color: black;
+    color: $black;
 }
 
 header{
-height:70px;
-background: #000000;
+    height:70px;
+    background: $black;
 }
 
 .layout-wrap{
-  margin:0 auto;
-  position: relative;
-  max-width: 960px;
-  min-width: 600px;
+    margin:0 auto;
+    position: relative;
+    max-width: 960px;
+    min-width: 600px;
 }
 
 header a{
-  position:relative;
-  top:20px;
-  text-indent:-999px;
-  display:block;
+    @extend a;
+    position:relative;
+    top:20px;
+    text-indent:-999px;
+    display:block;
 }
 
 header a img{
-  position:absolute;
-  left:10px;
+    position:absolute;
+    left:10px;
 }
 
 .search-box{
@@ -67,114 +76,24 @@ body{
     background:url(../../img/body-background.jpg) no-repeat top center;
     background-size: 100% 100%;
     font-size: 14px;
-    width: 100%;
+    width: $full_width;
 }
 
 .page-body{
-    background: grey;
+    background: $mediumGrey;
     overflow: hidden;
     padding: 1.171875%;
     height: 1200px;
 }
 
 #notifications{
-    background: #D3C6C6;
-    width: 100%;
+    background: $ligthGrey;
+    width: $full_width;
     height: 25px;
 }
 
 p{
     padding: 3px 0 0 2px;
-}
-
-nav{
-    width: 100%;
-}
-
-.nav-section {
-    float: left;
-    width: 32%;
-    background: #000000;
-    margin: 1%;
-    height: 140px;
-    position: relative;
-}
-
-.nav-section:first-of-type {
-margin-left: 0;
-}
-
-.nav-section:last-of-type {
-margin-right: 0;
-}
-
-.icons{
-    height: 100%;
-    overflow: hidden;
-}
-
-
-.icons > p{
-    color: white;
-    text-align: center;
-    font-size: 16px;
-}
-
-.reports{
-     background:  url(../../img/action-report-new.png) no-repeat 50% -180%;
-}
-
-.dashboard{
-     background:  url(../../img/action-report-top.png) no-repeat 50% -180%;
-}
-
-.Tutorials{
-     background:  url(../../img/actions-help.png) no-repeat 50% 210%;
-}
-
-.menu-hint p {
-    width: 100%;
-    background: #D3C6C6;
-    position: absolute;
-    bottom: 0;
-    margin-bottom: 0;
-    margin-top: 0;
-    height: 30px;
-    padding: 2% 0 0 3%;
-}
-
-.arrow{
-    position: absolute;
-    bottom: 10px;
-    left: 90%;
-    transition:transform 0.6s;
-}
-
-.action-list{
-    display: none;
-    background: white;
-    position: absolute;
-    top:140px;
-    width: 100%;
-    z-index: 30;
- /*    transition: transform .55s; */
-}
-
-.action-list li{
-    border-bottom: 1px black solid;
-}
-
-.action-list li:last-of-type{
-    border-bottom: none;
-}
-
-.nav-section:hover .action-list{
-    display: block;
-  /*   transform:translateY(20px); */
-}
-
-.nav-section:hover .arrow{
-    transform:rotate(180deg);
 }
 
 li{
@@ -188,125 +107,6 @@ ul{
     position: relative;
 }
 
-.tabs{
-   width: 100%;
-   height: 400px;
-   margin-top: 1%;
-}
-
-.tabs ul li{
-      background: #4D4753;
-      width: 23.2%;
-      height: 30px;
-      margin: 1.2%;
-      text-align: center;
-      padding-top: 0.6%;
-      float: left;
-}
-
-.tabs ul li a{
-    color: #ffffff;
-    width: 100%;
-    display: inline-block;
-}
-
-.tabs ul li:first-of-type {
-margin-left: 0;
-}
-
-.tabs ul li:last-of-type {
-margin-right: 0;
-}
-
-#pre-fix-quick-reports, #pre-fix-fmy-folders , #pre-fix-my-team-folders , #pre-fix-public-folders{
-    background:#D3C6C6;
-    width: 100%;
-    height:1200px;
-    position: relative;
-    top:38px;
-}
-
- .links{
-height: 30px;
-position: absolute;
-right: 2%;
-top:20px;
-}
-
-.reports-form{
-    width: 96%;
-    background: white;
-    position: absolute;
-    top:50px;
-    right: 2%;
-    z-index:20;
-}
-
-select{
-    z-index: 20;
-    position: absolute;
-    top:20px;
-    left: 2%;
-    width: 20%;
-}
-
-input[type="url"] , input[type="text"]{
-    width: 30%;
-}
-
-legend{
-    float: left;
-    padding: 0 10% 0 2%;
-}
-
-fieldset {
-    border: 0;
-    margin: 2%;
-    padding: 1%;
-    background: #998E8E;
-}
-
-input[type="submit"]{
-    background: black;
-    color: white;
-    padding: 3px 20px;
-    border: none;
-    margin-left: 5px;
-}
-
-.buttons{
-    float: right;
-    float: right;
-    margin: 0% 2% 1%;
-}
-
-.hidden{
-    display: none;
-}
-
-iframe{
-    width: 96%;
-    position: absolute;
-    top: 50px;
-    right: 2%;
-}
-
-.buttons > a{
-    text-decoration: underline;
-}
-
-.tab:focus , .tab:hover{
-    border: 1px solid blue;
-    background: #413B47;
-}
-
-#active {
-background: #D3C6C6;
-}
-
-#active a{
-color: black;
-}
 /*
  * Remove text-shadow in selection highlight: h5bp.com/i
  * These selection rule sets have to be separate.
@@ -370,20 +170,6 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -557,7 +343,7 @@ textarea {
     }
 
     img {
-        max-width: 100% !important;
+        max-width: $full_width !important;
     }
 
     @page {

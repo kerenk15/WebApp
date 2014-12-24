@@ -1,0 +1,96 @@
+.tabs{
+   width: $full_width;
+   height: 400px;
+   margin-top: 1%;
+}
+
+.tabs ul li{
+    background: $darkGrey;
+    width: 23.2%;
+    height: 30px;
+    margin: 1.2%;
+    text-align: center;
+    padding-top: 0.6%;
+    float: left;
+
+    &:first-of-type {
+    margin-left: 0;
+    }
+
+    &:last-of-type {
+    margin-right: 0;
+    }
+}
+
+.tabs ul li a{
+    color: $white;
+    width: $full_width;
+    display: inline-block;
+}
+
+%tab-base{
+    background:$ligthGrey;
+    width: $full_width;
+    height:1200px;
+    position: relative;
+    top:38px;
+}
+
+#pre-fix-quick-reports,
+#pre-fix-fmy-folders,
+#pre-fix-my-team-folders,
+#pre-fix-public-folders{
+    @extend %tab-base;
+}
+
+.links{
+    height: 30px;
+    position: absolute;
+    right: 2%;
+    top:20px;
+}
+
+select{
+    z-index: 20;
+    position: absolute;
+    top:20px;
+    left: 2%;
+    width: 20%;
+}
+
+.buttons{
+    float: right;
+    float: right;
+    margin: 0% 2% 1%;
+}
+
+.hidden{
+    display: none;
+}
+
+iframe{
+    width: $window_width;
+    position: absolute;
+    top: 50px;
+    right: 2%;
+}
+
+.buttons > a{
+    text-decoration: underline;
+}
+
+.tab {
+    &:hover,
+    &:focus {
+    border: 1px solid blue;
+    background: $darkGreyHover;;
+  }
+}
+
+#active {
+    background: $ligthGrey;
+}
+
+#active a{
+    @extend a;
+}
