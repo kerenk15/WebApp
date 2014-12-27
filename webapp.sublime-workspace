@@ -4,6 +4,42 @@
 		"selected_items":
 		[
 			[
+				"repo",
+				"reports"
+			],
+			[
+				"log",
+				"log	Console Log (var)"
+			],
+			[
+				"ex",
+				"extend"
+			],
+			[
+				"get",
+				"getItem"
+			],
+			[
+				"loca",
+				"localstorage"
+			],
+			[
+				"glo",
+				"globalStorage"
+			],
+			[
+				"st",
+				"storageReports"
+			],
+			[
+				"g",
+				"globalStorage"
+			],
+			[
+				"fun",
+				"function"
+			],
+			[
 				"buli",
 				"bulid-css"
 			],
@@ -40,14 +76,6 @@
 				"true"
 			],
 			[
-				"log",
-				"logm	Console Log (string)"
-			],
-			[
-				"fun",
-				"fun	Function"
-			],
-			[
 				"k",
 				"key"
 			],
@@ -78,10 +106,6 @@
 			[
 				"p",
 				"parentNode"
-			],
-			[
-				"st",
-				"style"
 			],
 			[
 				"val",
@@ -319,6 +343,22 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 10761,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/js/main.js",
+			"settings":
+			{
+				"buffer_size": 9135,
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -356,9 +396,29 @@
 	},
 	"expanded_folders":
 	[
+		"/C/Users/Shalom/Documents/GitHub/WebApp"
 	],
 	"file_history":
 	[
+		"/C/Users/Shalom/Documents/GitHub/WebApp/src/css/main.scss",
+		"/C/Users/Shalom/Documents/GitHub/WebApp/src/css/_main.scss",
+		"/C/Users/Shalom/Documents/GitHub/WebApp/src/css/nav.scss",
+		"/C/Users/Shalom/Documents/GitHub/WebApp/src/css/_forms.scss",
+		"/C/Users/Shalom/Documents/GitHub/WebApp/src/css/_tabs.scss",
+		"/C/Users/Shalom/Documents/GitHub/WebApp/src/js/main.js",
+		"/C/Users/Shalom/Documents/GitHub/WebApp/.jshintrc",
+		"/C/Users/Shalom/Documents/GitHub/WebApp/Gruntfile.js",
+		"/C/Users/Shalom/Desktop/raw-js.js",
+		"/C/Users/Shalom/Documents/GitHub/WebApp/public/js/main.min.js.map",
+		"/C/Users/Shalom/Documents/GitHub/WebApp/src/css/main.css",
+		"/C/Users/Shalom/Documents/GitHub/WebApp/src/css/main - Copy.css",
+		"/C/Users/Shalom/Documents/GitHub/WebApp/src/css/main.scss.css",
+		"/C/Users/Shalom/Documents/GitHub/WebApp/.gitignore",
+		"/C/Users/Shalom/Documents/GitHub/WebApp/node_modules/grunt-sass/node_modules/node-sass/src/libsass/mapping.hpp",
+		"/C/Users/Shalom/Documents/GitHub/WebApp/node_modules/grunt-contrib-uglify/node_modules/maxmin/node_modules/gzip-size/node_modules/concat-stream/node_modules/inherits/inherits.js",
+		"/C/Users/Shalom/Documents/GitHub/WebApp/node_modules/grunt-contrib-jshint/node_modules/jshint/node_modules/htmlparser2/test/Events/28-cdata_in_html.json",
+		"/C/Users/Shalom/Documents/GitHub/WebApp/node_modules/grunt-contrib-uglify/node_modules/uglify-js/lib/mozilla-ast.js",
+		"/C/Users/Shalom/Documents/GitHub/WebApp/package.json",
 		"/C/Users/Shalom/Desktop/Netcraft/grunt/src/css/components/_buttons.scss",
 		"/C/Users/Shalom/Desktop/Netcraft/grunt/public/js/main.min.js",
 		"/C/Users/Shalom/Desktop/Netcraft/grunt/public/css/main.min.css.map",
@@ -414,7 +474,7 @@
 	],
 	"find":
 	{
-		"height": 26.0
+		"height": 34.0
 	},
 	"find_in_files":
 	{
@@ -428,6 +488,57 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"funcRef",
+			"localStorageSupported",
+			"init",
+			"100",
+			"nav",
+			"p",
+			"p ",
+			"30",
+			"$ligthGrey",
+			"action",
+			"ex",
+			"96",
+			" a",
+			"a ",
+			"a",
+			"blac",
+			" a",
+			"a ",
+			"tab",
+			"hover",
+			"#413B47",
+			"hover",
+			"white",
+			"fff",
+			"#000000",
+			"#4D4753",
+			"#998E8E",
+			":#998E8E",
+			"$c",
+			"$mediunGray",
+			"grey",
+			"$mediunGray",
+			"grey",
+			"#998E8E",
+			"lightGrey",
+			"c-background",
+			"c",
+			"c-background",
+			"$c",
+			"#D3C6C6",
+			"}\n",
+			"#D3C6C6",
+			"addToSelect",
+			"opt",
+			"init",
+			"opt",
+			"sel",
+			"each",
+			"opt",
+			"url",
+			"utils",
 			"main",
 			"all",
 			"false",
@@ -504,53 +615,7 @@
 			"servic",
 			"succe",
 			"footer",
-			"transi",
-			"large",
-			"ul>li",
-			"media",
-			"links",
-			"colorb",
-			"wra",
-			"hover",
-			"colorbo",
-			"colo",
-			"displa",
-			".blue",
-			"top",
-			"link",
-			"colorb",
-			"slide-",
-			".top",
-			"links",
-			"top",
-			"new",
-			"auto",
-			"black",
-			"#4ea6ca",
-			";\n",
-			"h3",
-			"buttom",
-			"1000",
-			"h5",
-			"h4",
-			"h3",
-			"date",
-			"1000",
-			"h2",
-			"befor",
-			"<div class=\"center_page\">",
-			";\n",
-			"after",
-			"conten",
-			"date",
-			"left",
-			".\n",
-			"}\n",
-			"	\n",
-			";\n",
-			"ul",
-			"290px",
-			";\n"
+			"transi"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -568,8 +633,68 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10761,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								10709,
+								10730
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3402.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/js/main.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9135,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8419,
+								8419
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 5491.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -619,6 +744,22 @@
 		"height": 0.0,
 		"selected_items":
 		[
+			[
+				"grunt",
+				"Gruntfile.js"
+			],
+			[
+				"main.css",
+				"src\\css\\main.css"
+			],
+			[
+				"index",
+				"index.html"
+			],
+			[
+				"mainjs",
+				"src\\js\\main.js"
+			]
 		],
 		"width": 0.0
 	},
