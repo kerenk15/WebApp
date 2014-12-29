@@ -91,6 +91,10 @@ iframe{
     background: $ligthGrey;
 }
 
-#active a{
+#active a , {
     @extend a;
+}
+
+#active > i:before{
+    color: $black;
 }

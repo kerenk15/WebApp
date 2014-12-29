@@ -66,7 +66,7 @@ nav{
     top:140px;
     width: $full_width;
     z-index: 30;
- /*    transition: transform .55s; */
+/*     transition: transform .55s; */
 }
 
 .action-list li{
@@ -77,11 +77,46 @@ nav{
     }
 }
 
+.action-list li > a{
+    display: block;
+}
+
 .nav-section:hover .action-list{
     display: block;
-  /*   transform:translateY(20px); */
 }
 
 .nav-section:hover .arrow{
     transform:rotate(180deg);
+}
+
+i {
+    position: relative;
+    left: 8%;
+}
+
+%fa_font{
+    font-family: FontAwesome;
+    font-style: normal;
+    color: $white;
+    position: absolute;
+    left: 0;
+}
+
+.fa_reports:before{
+    content: "\f08E";
+    @extend %fa_font;
+}
+
+.fa_folders:before{
+    content: "\f006";
+    @extend %fa_font;
+}
+.fa_team_folders:before{
+    content: "\f115";
+    @extend %fa_font;
+}
+
+.fa_public_folders:before{
+    content: "\f0C5";
+    @extend %fa_font;
 }

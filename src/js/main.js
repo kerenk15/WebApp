@@ -14,13 +14,12 @@
 		changeOption,
 		addToStorage;
 
+	//declaring global veriables
 	var notif = $('#notifications'),
 		namesInput = $('input[name="Name"]'),
 		urlInput = $('input[name="url"]'),
-		local,
-		globalStorage,
-		storageReports = [],
-		storageFolders = [];
+		globalStorage;
+
 
 	//FUNCTIONS//
 
@@ -135,7 +134,10 @@
 	validateForm = function (targetForm){
 		var	urlPlace = -1, // to know the last url entered
 			re =/http(s)?:\/\/w{0,3}.+\.\w{2,4}(.+)?/,
-			coloredBorder = 0;
+			coloredBorder = 0,
+			local,
+			storageReports = [],
+			storageFolders = [];
 
 		$.each(namesInput, function( i,value ) {
 
@@ -158,7 +160,8 @@
 		    			urlInput[i].style.border = 'none';
 						addToSelect(namesInput[i] , urlPlace , targetForm.parentNode);
 						urlPlace = i;
-						addToStorage(namesInput[i] , urlInput[i] , targetForm.parentNode);
+						addToStorage(namesInput[i] , urlInput[i] , targetForm.parentNode,
+						 	 		local , storageReports , storageFolders);
 					}else{
 		  				urlInput[i].style.border = '1px solid red';
 		  				coloredBorder = 1;
@@ -223,7 +226,7 @@
 	    sel.add(opt,sel[0]);
 	};
 
-	addToStorage = function(urlName , url , tab){
+	addToStorage = function(urlName , url , tab , local , storageReports , storageFolders){
 
 		if (localStorageSupported()){
 
@@ -268,7 +271,7 @@
 						return;
 					}
 				});
-				$( '#notifications').html
+				notif.html
 				('<p>The searched report ' + target[i].value + ' was not found</p>');
 			}
 		});
@@ -344,7 +347,11 @@
 		//search button
 		$(search).submit(searchBox);
 
+		//retrive from local storage
 		initReports(globalStorage);
+
+		//tab change
+		$(window).on('hashchange', funcRef);
 
 	})();
 
