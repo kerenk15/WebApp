@@ -46,7 +46,9 @@
 		var hash = location.hash.slice(1),
 			tabs = $('.tabs > div'), //returns an array of the tab content
 			link = $('.tabs > ul > li > a').eq(0),// returns the first tab link
-			tabName = $('#pre-fix-' + hash);
+			tabName = $('#pre-fix-' + hash),
+			iframe = $('#iframe-pre-fix-' + hash),
+			src = iframe.attr('data-src');
 
 		//if there is no #, open the first tab
 		if (hash === '') {
@@ -62,6 +64,10 @@
 
 		// change the className of the relevent tab content
 		tabName.removeClass('hidden');
+
+		//upload relavent iframe when clicking the relavent tab
+		iframe.attr('src', src);
+
 	};
 
 	//active tab
@@ -369,6 +375,8 @@
 			}
 		}
 	});
+
+
 
 })(jQuery);
 	//remove options+ move with keyboard

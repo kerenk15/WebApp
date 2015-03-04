@@ -4,6 +4,38 @@
 		"selected_items":
 		[
 			[
+				"stor",
+				"storageFolders"
+			],
+			[
+				"url",
+				"urlPlace"
+			],
+			[
+				"na",
+				"namesInput"
+			],
+			[
+				"ta",
+				"tabID"
+			],
+			[
+				"sr",
+				"storageReports"
+			],
+			[
+				"cur",
+				"curName"
+			],
+			[
+				"repor",
+				"reports"
+			],
+			[
+				"sav",
+				"savedData"
+			],
+			[
 				"repo",
 				"reports"
 			],
@@ -54,10 +86,6 @@
 			[
 				"par",
 				"parentNode"
-			],
-			[
-				"ta",
-				"target"
 			],
 			[
 				"targ",
@@ -122,10 +150,6 @@
 			[
 				"va",
 				"validation"
-			],
-			[
-				"na",
-				"names"
 			],
 			[
 				"qu",
@@ -347,7 +371,7 @@
 			"file": "index.html",
 			"settings":
 			{
-				"buffer_size": 10761,
+				"buffer_size": 10935,
 				"line_ending": "Windows"
 			}
 		},
@@ -355,7 +379,15 @@
 			"file": "src/js/main.js",
 			"settings":
 			{
-				"buffer_size": 9135,
+				"buffer_size": 9717,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/css/nav.scss",
+			"settings":
+			{
+				"buffer_size": 1852,
 				"line_ending": "Windows"
 			}
 		}
@@ -400,14 +432,19 @@
 	],
 	"file_history":
 	[
-		"/C/Users/Shalom/Documents/GitHub/WebApp/src/css/main.scss",
+		"/C/Users/Shalom/Documents/GitHub/WebApp/Gruntfile.js",
+		"/C/Users/Shalom/Documents/GitHub/Comverse/index.html",
+		"/C/Users/Shalom/AppData/Local/Temp/Rar$DI01.792/main.js",
+		"/C/Users/Shalom/AppData/Local/Temp/Rar$DI01.668/main.js",
+		"/C/Users/Shalom/AppData/Local/Temp/Rar$EX05.698/README.html",
+		"/C/Users/Shalom/AppData/Local/Temp/Rar$EX01.230/index.html",
+		"/C/Users/Shalom/Documents/GitHub/WebApp/src/css/_tabs.scss",
 		"/C/Users/Shalom/Documents/GitHub/WebApp/src/css/_main.scss",
+		"/C/Users/Shalom/Documents/GitHub/WebApp/src/css/main.scss",
 		"/C/Users/Shalom/Documents/GitHub/WebApp/src/css/nav.scss",
 		"/C/Users/Shalom/Documents/GitHub/WebApp/src/css/_forms.scss",
-		"/C/Users/Shalom/Documents/GitHub/WebApp/src/css/_tabs.scss",
 		"/C/Users/Shalom/Documents/GitHub/WebApp/src/js/main.js",
 		"/C/Users/Shalom/Documents/GitHub/WebApp/.jshintrc",
-		"/C/Users/Shalom/Documents/GitHub/WebApp/Gruntfile.js",
 		"/C/Users/Shalom/Desktop/raw-js.js",
 		"/C/Users/Shalom/Documents/GitHub/WebApp/public/js/main.min.js.map",
 		"/C/Users/Shalom/Documents/GitHub/WebApp/src/css/main.css",
@@ -450,7 +487,6 @@
 		"/C/Users/Shalom/Desktop/Netcraft/שיעורים/Ajax/plugin - Copy (2).js",
 		"/C/Users/Shalom/Desktop/Netcraft/שיעורים/Ajax/plugin-example.js",
 		"/C/Users/Shalom/Desktop/Netcraft/שיעורים/Ajax/main.js",
-		"/C/Users/Shalom/Documents/GitHub/Comverse/index.html",
 		"/C/Users/Shalom/Documents/GitHub/Comverse/css/style.css",
 		"/C/Users/Shalom/Documents/GitHub/Comverse/css/styleGuide.css",
 		"/C/Users/Shalom/Desktop/Accessible forms. Lab 1.htm",
@@ -488,6 +524,46 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"reg",
+			"notif",
+			"addto",
+			"initre",
+			"searchBox",
+			"addToStorage",
+			"index",
+			"addToStorage",
+			"reportsList",
+			"formID",
+			"reports",
+			"index",
+			"link",
+			"tabs_list",
+			"search",
+			"buttons",
+			"links",
+			"url[",
+			"url",
+			"url[",
+			"url",
+			"SEARCHB",
+			"namesInput",
+			"curIframe",
+			"tabID",
+			"iframe",
+			"opt",
+			"sel",
+			"names",
+			"iframe",
+			"checkIcon",
+			"validateForm",
+			"validatForm",
+			"validateForm",
+			"validatForm",
+			"validateForm",
+			"validation",
+			"targetTab",
+			"iframe",
+			"reports",
 			"funcRef",
 			"localStorageSupported",
 			"init",
@@ -575,47 +651,7 @@
 			"todos",
 			"Todos",
 			"todos",
-			"Todos",
-			"todos",
-			"item",
-			"todos",
-			"Todos",
-			"todos",
-			"Todos",
-			"todos",
-			"clear",
-			"clearBtn",
-			"function_name",
-			"true",
-			"validation",
-			"form",
-			"report",
-			"tabs",
-			"activ",
-			"tabID",
-			"style",
-			"check",
-			"icon",
-			"buttons",
-			"sett",
-			"reportsList",
-			"repor",
-			"ACTIV",
-			"form",
-			"settin",
-			"                       <",
-			"small_s",
-			"isOptions",
-			"done",
-			"error",
-			"footer_buttom_nav_s",
-			"footer_buttom_nav",
-			"footer_buttom_nav_small",
-			"searc",
-			"servic",
-			"succe",
-			"footer",
-			"transi"
+			"Todos"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -633,7 +669,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -642,15 +678,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10761,
+						"buffer_size": 10935,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								10709,
-								10730
+								15,
+								0
 							]
 						],
 						"settings":
@@ -660,10 +696,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 3402.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -672,15 +708,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 9135,
+						"buffer_size": 9717,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								8419,
-								8419
+								4287,
+								4287
 							]
 						],
 						"settings":
@@ -689,10 +725,40 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 5491.0,
+						"translation.y": 2377.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/css/nav.scss",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1852,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								968,
+								968
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Sass/Syntaxes/Sass.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 216.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
 					"type": "text"
 				}
 			]
